@@ -72,7 +72,7 @@ library(psych) # pairs analysis
 ###################################################################################
 
 # Change working directory
-setwd("~/Dropbox (Personal)/R_Scripts/CBC 2017/Figures")
+# setwd("~/Documents/Git/Carrie Bow Analyses")
 
 ############### RLS
 
@@ -133,12 +133,15 @@ benthic$Year <- as.factor(benthic$Year)
 
 # remove extraneous columns
 short_benthic <- benthic %>%
-  select(Site.Name, Year, Habitat, Label)
+  select(Name, Site.Name, Year, Habitat, Label)
+
+# Order factor Site.Name by reef type and from North to South
+short_benthic$Site.Name <- factor(short_benthic$Site.Name, levels = c("Tobacco Reef", "Carrie Bow Reef", "South Reef", "Carrie Bow Patch Reef", "House Reef", "Curlew Patch Reef"))
 
 # add up occurences 
 short_benthic$amount <- rep(1)
 short_benthic <- short_benthic %>%
-  group_by(Site.Name, Year, Habitat, Label, amount) %>%
+  group_by(Name, Site.Name, Year, Habitat, Label, amount) %>%
   summarise(sum(amount))
 
 # change column name
@@ -169,7 +172,7 @@ space_benthic <- short_benthic
 # RICHNESS & ABUNDANCE                                                            #
 ###################################################################################
 
-############### RICHNESS
+############### FISH RICHNESS
 
 #set dataset to analyse
 #year, method
@@ -191,7 +194,7 @@ attach(sitetime)
 pool <- RLS_rich[,4:123] %>%
   specpool(Site.Time)
 
-############### TOTAL ABUNDANCE
+############### TOTAL FISH ABUNDANCE
 
 detach(package:plyr)
 Abundance <- RLS_subsample %>%
@@ -298,7 +301,7 @@ herb.pool <- Herb.spread[,4:27] %>%
 ############### BENTHIC DIVERSITY
 
 # add simpson diversity values in column
-benthic_rich$simpson <- diversity(benthic_rich[,4:54], index = "simpson")
+benthic_rich$simpson <- diversity(benthic_rich[,5:55], index = "simpson")
 
 ###################################################################################
 # COMMUNITY COMPOSITION                                                           #
@@ -435,15 +438,20 @@ detach(package:plyr)
 ############### BENTHIC MDS
 
 # run matrix 
-benthic_mat_run <- biotic_benthic[,4:51]
+benthic_mat_run <- biotic_benthic[,5:52]
 
 # MDS of benthic community
 ben_mds <- metaMDS(benthic_mat_run)
 ben_mds_points <- ben_mds$points
 ben_mds_points <- data.frame(ben_mds_points)
-plot_data_ben <- data.frame(ben_mds_points, biotic_benthic[,1:3])
+plot_data_ben <- data.frame(ben_mds_points, biotic_benthic[,1:4])
+
+# hulls by habitat
 library(plyr)
-chulls_ben <- ddply(plot_data_ben, .(Habitat), function(df) df[chull(df$MDS1, df$MDS2), ])
+#chulls_ben <- ddply(plot_data_ben, .(Habitat), function(df) df[chull(df$MDS1, df$MDS2), ])
+
+# hulls by year
+chulls_ben_year <- ddply(plot_data_ben, .(Year), function(df) df[chull(df$MDS1, df$MDS2), ])
 detach(package:plyr)
 
 ###################################################################################
@@ -502,26 +510,27 @@ All_pairs <- All_pairs %>%
 ###################################################################################
 
 # add total number of points per photo
-space_benthic$points <- rowSums(space_benthic[,4:55])
+space_benthic$points <- rowSums(space_benthic[,5:55])
 
 # add total number of biotic points per photo
-space_benthic$occupied <- rowSums(space_benthic[,c(4:6, 8:20, 22, 24:41, 43:55)])
+space_benthic$empty <- rowSums(space_benthic[,c(8, 22, 24, 43)])
 
-# calc empty space
-space_benthic$empty <- space_benthic$points - space_benthic$occupied
+# calc occupied space
+space_benthic$occupied <- space_benthic$points - space_benthic$empty
 space_benthic$empty_prop <- space_benthic$empty/space_benthic$points
 empty_space <- space_benthic %>%
-  group_by(site, date) %>%
+  group_by(Name, Site.Name, Year, Habitat) %>%
   summarise(median(empty_prop))
 
 # add total number of macroalgal points per photo
-space_benthic$macroalgae <- rowSums(space_benthic[,c(11,12,20,22,24,43,53,54)])
+space_benthic$macroalgae <- rowSums(space_benthic[,c(12,13,21,23,25,44,54,55)])
 space_benthic$algal_prop <- space_benthic$macroalgae/space_benthic$points
 algal_cover <- space_benthic %>%
-  group_by(site,date) %>%
-  summarise(median(algal_prop))
+  group_by(Name, Site.Name, Year, Habitat, algal_prop) %>%
+  summarise()
 
-space_benthic$site <- factor(space_benthic$site, levels = c("CBC-Lagoon-Reef", "CBC-House-Reef", "CBC-Curlew-Patch-Reef", "CBC-Tobacco-Reef", "CBC-Central-Reef", "CBC-South-Reef"))
+#rename column
+names(algal_cover)[names(algal_cover)=="algal_prop"] <- "total"
 
 ###################################################################################
 # FACETED FIGURES                                                                 #
@@ -738,29 +747,51 @@ annotate_figure(Figure5, bottom = text_grob("Figure 5: Pairs plot of stuff."))
 ############### FIGURE 6
 
 # Figure 6A Benthic MDS
-benthic_MDS <- ggplot(plot_data_ben, aes(x=MDS1, y=MDS2, pch = Year, 
-                                     color = Habitat)) + 
-  theme_minimal() +
+benthic_MDS <- ggplot(plot_data_ben, aes(x=MDS1, y=MDS2, pch = Habitat, 
+                                         color = Year)) + 
+  scale_color_viridis(discrete = TRUE, option = "viridis", begin = 0.3, end = 0.7) +
+  theme_minimal() + 
   geom_point(size = 4) + 
-  geom_polygon(data=chulls_ben, aes(x=MDS1, y=MDS2, group=Habitat), fill=NA) +
-  habScale
-benthic_MDS
+  geom_polygon(data=chulls_ben_year, aes(x=MDS1, y=MDS2, group=Year), fill=NA) 
+#benthic_MDS
 
-# Figure 6B Benthic Simpson Diversity
-ggplot(benthic_rich, aes(site, simpson)) + geom_boxplot() +
-  labs(title="Benthic Simpson Diverisy", x="site", y="simpson")
-
-# 1D Fish Familial Simpson Diversity
-bendiv.box <- ggplot(benthic_rich, aes(x=Habitat, y=simpson, fill = Habitat)) + 
-  geom_boxplot() + 
-  scale_fill_manual(values = habcols) + 
-  geom_point(aes(x=Habitat, y=simpson, shape = Habitat)) +
+# Figure 6B Unoccupied Space
+benspace.box <- ggplot(space_benthic, aes(x = Site.Name, y = 1-(occupied/points), fill = Year)) + 
+  geom_boxplot(aes(fill = Year, group = interaction(Site.Name, Year))) + 
+  scale_fill_viridis(discrete = TRUE, option = "viridis", begin = 0.3, end = 0.7) +
   scale_y_continuous(limits = c(0,1)) +
   theme_minimal() +
   theme(axis.text.x=element_blank()) +
-  labs(x="", y="Simpson Value")
-bendiv.box
+  labs(x="", y="Proportion Space")
+#benspace.box
 
+# Figure 6C Macroalgal Abundance
+benalgae.box <- ggplot(algal_cover, aes(x = Site.Name, y = total, fill = Year)) + 
+  geom_boxplot(aes(fill = Year, group = interaction(Site.Name, Year))) + 
+  scale_fill_viridis(discrete = TRUE, option = "viridis", begin = 0.3, end = 0.7) +
+  scale_y_continuous(limits = c(0,1)) +
+  theme_minimal() +
+  theme(axis.text.x=element_blank()) +
+  labs(x="", y="Proportion Algae")
+#benalgae.box
+
+# Figure 6D Benthic Simpson Diversity
+bendiv.box <- ggplot(benthic_rich, aes(x=Site.Name, y=simpson, fill = Year)) + 
+  geom_boxplot(aes(fill = Year, group = interaction(Site.Name, Year))) + 
+  scale_fill_viridis(discrete = TRUE, option = "viridis", begin = 0.3, end = 0.7) +
+  scale_y_continuous(limits = c(0,1)) +
+  theme_minimal() +
+  theme(axis.text.x=element_blank()) +
+  labs(x="", y="Simpson Value") 
+#bendiv.box
+
+Figure6 <- ggarrange(benthic_MDS, ggarrange(benspace.box, benalgae.box, bendiv.box, 
+                     labels = c("B", "C", "D"),
+                     nrow = 3, legend = "none"), labels = "A", ncol = 2,
+                     common.legend = TRUE, legend = "right")
+annotate_figure(Figure6, bottom = text_grob("Figure 6: Benthic reef community A) community composition, B) unoccupied space, C) algal abundance, and \n D) Simpson diversity across six fore- and patch reefs sampled in 2015 and 2017 around Carrie Bow Cay, Belize.", size = 10))
+
+# best size: ~900x630
 
 #####
 #<<<<<<<<<<<<<<<<<<<<<<<<<<END OF SCRIPT>>>>>>>>>>>>>>>>>>>>>>>>#
