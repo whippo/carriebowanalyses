@@ -19,6 +19,7 @@
 # 20171122_squidpops_CBC.csv
 # 20171120_weedpops.csv
 # COPY_20171206_CBC-Benthic-photo-annotations.csv
+# 20170209_CBC_Relief.csv
 
 # Associated Scripts:
 # RLS_M1M2_v1.R 
@@ -167,6 +168,26 @@ benthic_rich <- short_benthic
 
 # create dataset for space calcs
 space_benthic <- short_benthic
+
+############### REEF RELIEF
+
+# read in relief data
+relief <- read.csv("20170209_CBC_Relief.csv")
+
+# change year to factor
+relief$Year <- as.factor(relief$Year)
+
+# Order factor Site.Name by reef type and from North to South
+relief$Site.Name <- factor(relief$Site.Name, levels = c("Tobacco Reef", "Carrie Bow Reef", "South Reef", "Carrie Bow Patch Reef", "House Reef", "Curlew Patch Reef"))
+
+# remove unused columns
+relief <- relief %>%
+  select(c(Habitat, Site.Name, Year, Relief..m.))
+
+# create column for joining to other data
+relief <- relief %>%
+  unite_("Site.Time", c("Site.Name", "Year"), sep = "_", remove = FALSE)
+
 
 ###################################################################################
 # RICHNESS & ABUNDANCE                                                            #
@@ -505,6 +526,17 @@ All_pairs <- All_pairs %>%
          Squidpops, Tot.algae, acanthophora, dictyota, halimeda, sargassum, 
          thalassia)
 
+# calculate mean rugosity per site/time
+relief_mean <- relief %>%
+  group_by(Site.Time) %>%
+  summarize(mean(Relief..m.))
+
+# join relief data with all other data
+All_pairs <- left_join(All_pairs, relief_mean, by="Site.Time")
+
+# rename calculated column
+names(All_pairs)[names(All_pairs)=="mean(Relief..m.)"] <- "mean.relief"
+
 ###################################################################################
 # BENTHIC SPACE                                                                   #
 ###################################################################################
@@ -740,6 +772,11 @@ annotate_figure(Figure4, bottom = text_grob("Figure 4: Calcuated A) species rich
 all_pairplot <- pairs.panels(All_pairs[5:15],bg=habcols[All_pairs$Habitat.x], scale = TRUE,
              pch=21, ellipses = FALSE)
 
+# Figure 5B pairs for reef only
+
+reef_pairplot <- pairs.panels(All_pairs[c(4:5, 7:8, 19:20, 29:30, 32:33, 38:39),c(5:16)], bg=habcols[All_pairs$Habitat.x], scale = FALSE,
+                              pch=21, ellipses = FALSE)
+
 Figure5 <- ggarrange(all_pairplot,
                      ncol = 1, nrow = 1)
 annotate_figure(Figure5, bottom = text_grob("Figure 5: Pairs plot of stuff."))
@@ -792,6 +829,19 @@ Figure6 <- ggarrange(benthic_MDS, ggarrange(benspace.box, benalgae.box, bendiv.b
 annotate_figure(Figure6, bottom = text_grob("Figure 6: Benthic reef community A) community composition, B) unoccupied space, C) algal abundance, and \n D) Simpson diversity across six fore- and patch reefs sampled in 2015 and 2017 around Carrie Bow Cay, Belize.", size = 10))
 
 # best size: ~900x630
+
+############### FIGURE 7
+
+# Figure 7 Benthic Rugosity of Reefs
+
+rug.box <- ggplot(relief, aes(x=Site.Name, y=Relief..m., fill = Year)) + 
+  geom_boxplot(aes(fill = Year, group = interaction(Site.Name, Year))) + 
+  scale_fill_viridis(discrete = TRUE, option = "viridis", begin = 0.3, end = 0.7) +
+  theme_minimal() +
+  labs(x="", y="Rugosity (m)") 
+rug.box
+
+
 
 #####
 #<<<<<<<<<<<<<<<<<<<<<<<<<<END OF SCRIPT>>>>>>>>>>>>>>>>>>>>>>>>#
