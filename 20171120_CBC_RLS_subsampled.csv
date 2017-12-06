@@ -1,0 +1,785 @@
+"","Site.Name","Habitat","Year","Species","sum"
+"1","Blueground Mangrove","Mangrove","2015","Coryphopterus dicrus",1
+"2","Blueground Mangrove","Mangrove","2015","Abudefduf saxatilis",1
+"3","Blueground Mangrove","Mangrove","2015","Acanthurus chirurgus",3
+"4","Blueground Mangrove","Mangrove","2015","Chaetodon capistratus",1
+"5","Blueground Mangrove","Mangrove","2015","Clupeidae",250
+"6","Blueground Mangrove","Mangrove","2015","Haemulon flavolineatum",1
+"7","Blueground Mangrove","Mangrove","2015","Haemulon sciurus",3
+"8","Blueground Mangrove","Mangrove","2015","Haemulon sp.",3
+"9","Blueground Mangrove","Mangrove","2015","Halichoeres bivittatus",2
+"10","Blueground Mangrove","Mangrove","2015","Hypoplectrus spp.",1
+"11","Blueground Mangrove","Mangrove","2015","Lutjanus apodus",2
+"12","Blueground Mangrove","Mangrove","2015","Lutjanus griseus",4
+"13","Blueground Mangrove","Mangrove","2015","Scarus iseri",17
+"14","Blueground Mangrove","Mangrove","2015","Sparisoma rubripinne",7
+"15","Blueground Mangrove","Mangrove","2015","Sparisoma viride",2
+"16","Blueground Mangrove","Mangrove","2015","Stegastes variabilis",3
+"17","Blueground Mangrove","Mangrove","2015","Strongylura notata",1
+"18","Blueground Mangrove","Mangrove","2016","Clupeid spp.",12
+"19","Blueground Mangrove","Mangrove","2016","Clupeidae",70
+"20","Blueground Mangrove","Mangrove","2016","Haemulon carbonarium",1
+"21","Blueground Mangrove","Mangrove","2016","Haemulon spp.",4
+"22","Blueground Mangrove","Mangrove","2016","Lutjanus apodus",19
+"23","Blueground Mangrove","Mangrove","2016","Lutjanus griseus",3
+"24","Blueground Mangrove","Mangrove","2016","Scarus iseri",22
+"25","Blueground Mangrove","Mangrove","2016","Sparisoma viride",1
+"26","Blueground Mangrove","Mangrove","2016","Sphyraena barracuda",2
+"27","Blueground Mangrove","Mangrove","2016","Strongylura notata",4
+"28","Blueground Mangrove","Mangrove","2016","Thalassoma bifasciatum",1
+"29","Blueground Mangrove","Mangrove","2017","Abudefduf saxatilis",1
+"30","Blueground Mangrove","Mangrove","2017","Acanthurus chirurgus",1
+"31","Blueground Mangrove","Mangrove","2017","Anisotremus virginicus",1
+"32","Blueground Mangrove","Mangrove","2017","Canthigaster rostrata",19
+"33","Blueground Mangrove","Mangrove","2017","Chaetodon capistratus",2
+"34","Blueground Mangrove","Mangrove","2017","Haemulon plumierii",3
+"35","Blueground Mangrove","Mangrove","2017","Haemulon sciurus",2
+"36","Blueground Mangrove","Mangrove","2017","Haemulon spp.",8
+"37","Blueground Mangrove","Mangrove","2017","Lutjanus apodus",2
+"38","Blueground Mangrove","Mangrove","2017","Lutjanus griseus",5
+"39","Blueground Mangrove","Mangrove","2017","Scarus iseri",23
+"40","Blueground Mangrove","Mangrove","2017","Sparisoma aurofrenatum",5
+"41","Blueground Mangrove","Mangrove","2017","Sparisoma rubripinne",1
+"42","Blueground Mangrove","Mangrove","2017","Sparisoma viride",1
+"43","Blueground Mangrove","Mangrove","2017","Stegastes diencaeus",1
+"44","Blueground Mangrove","Mangrove","2017","Stegastes variabilis",1
+"45","Blueground Mangrove","Mangrove","2017","Strongylura notata",1
+"46","Carrie Bow Reef","Fore Reef","2015","Acanthemblemaria aspera",10
+"47","Carrie Bow Reef","Fore Reef","2015","Amblycirrhitus pinos",1
+"48","Carrie Bow Reef","Fore Reef","2015","Diplogrammus pauciradiatus",1
+"49","Carrie Bow Reef","Fore Reef","2015","Elacatinus lobeli",6
+"50","Carrie Bow Reef","Fore Reef","2015","Malacoctenus triangulatus",1
+"51","Carrie Bow Reef","Fore Reef","2015","Acanthurus bahianus",1
+"52","Carrie Bow Reef","Fore Reef","2015","Acanthurus coeruleus",10
+"53","Carrie Bow Reef","Fore Reef","2015","Canthigaster rostrata",2
+"54","Carrie Bow Reef","Fore Reef","2015","Cephalopholis cruentata",1
+"55","Carrie Bow Reef","Fore Reef","2015","Chaetodon capistratus",1
+"56","Carrie Bow Reef","Fore Reef","2015","Chaetodon striatus",1
+"57","Carrie Bow Reef","Fore Reef","2015","Chromis cyanea",1
+"58","Carrie Bow Reef","Fore Reef","2015","Clepticus parrae",3
+"59","Carrie Bow Reef","Fore Reef","2015","Haemulon flavolineatum",2
+"60","Carrie Bow Reef","Fore Reef","2015","Halichoeres bivittatus",2
+"61","Carrie Bow Reef","Fore Reef","2015","Halichoeres garnoti",9
+"62","Carrie Bow Reef","Fore Reef","2015","Halichoeres maculipinna",2
+"63","Carrie Bow Reef","Fore Reef","2015","Holacanthus tricolor",1
+"64","Carrie Bow Reef","Fore Reef","2015","Scarus iseri",15
+"65","Carrie Bow Reef","Fore Reef","2015","Serranus tigrinus",1
+"66","Carrie Bow Reef","Fore Reef","2015","Sparisoma aurofrenatum",7
+"67","Carrie Bow Reef","Fore Reef","2015","Sparisoma viride",1
+"68","Carrie Bow Reef","Fore Reef","2015","Stegastes adustus",2
+"69","Carrie Bow Reef","Fore Reef","2015","Stegastes partitus",20
+"70","Carrie Bow Reef","Fore Reef","2015","Stegastes planifrons",2
+"71","Carrie Bow Reef","Fore Reef","2015","Stegastes variabilis",1
+"72","Carrie Bow Reef","Fore Reef","2015","Thalassoma bifasciatum",19
+"73","Carrie Bow Reef","Fore Reef","2016","Acanthemblemaria aspera",11
+"74","Carrie Bow Reef","Fore Reef","2016","Coryphopterus glaucofraenum",3
+"75","Carrie Bow Reef","Fore Reef","2016","Gnatholepis thompsoni",4
+"76","Carrie Bow Reef","Fore Reef","2016","Serranus tigrinus",3
+"77","Carrie Bow Reef","Fore Reef","2016","Acanthurus coeruleus",3
+"78","Carrie Bow Reef","Fore Reef","2016","Acanthurus tractus",5
+"79","Carrie Bow Reef","Fore Reef","2016","Canthigaster rostrata",2
+"80","Carrie Bow Reef","Fore Reef","2016","Cephalopholis cruentata",2
+"81","Carrie Bow Reef","Fore Reef","2016","Chromis cyanea",4
+"82","Carrie Bow Reef","Fore Reef","2016","Ginglymostoma cirratum",1
+"83","Carrie Bow Reef","Fore Reef","2016","Haemulon sciurus",1
+"84","Carrie Bow Reef","Fore Reef","2016","Halichoeres bivittatus",1
+"85","Carrie Bow Reef","Fore Reef","2016","Halichoeres garnoti",15
+"86","Carrie Bow Reef","Fore Reef","2016","Halichoeres maculipinna",2
+"87","Carrie Bow Reef","Fore Reef","2016","Hypoplectrus nigricans",2
+"88","Carrie Bow Reef","Fore Reef","2016","Scarus iseri",20
+"89","Carrie Bow Reef","Fore Reef","2016","Sparisoma aurofrenatum",13
+"90","Carrie Bow Reef","Fore Reef","2016","Sparisoma chrysopterum",2
+"91","Carrie Bow Reef","Fore Reef","2016","Stegastes adustus",9
+"92","Carrie Bow Reef","Fore Reef","2016","Stegastes partitus",14
+"93","Carrie Bow Reef","Fore Reef","2016","Stegastes planifrons",3
+"94","Carrie Bow Reef","Fore Reef","2016","Stegastes variabilis",4
+"95","Carrie Bow Reef","Fore Reef","2016","Thalassoma bifasciatum",5
+"96","Carrie Bow Reef","Fore Reef","2017","Acanthemblemaria aspera",3
+"97","Carrie Bow Reef","Fore Reef","2017","Coryphopterus dicrus",2
+"98","Carrie Bow Reef","Fore Reef","2017","Coryphopterus glaucofraenum",3
+"99","Carrie Bow Reef","Fore Reef","2017","Acanthurus coeruleus",3
+"100","Carrie Bow Reef","Fore Reef","2017","Acanthurus tractus",5
+"101","Carrie Bow Reef","Fore Reef","2017","Canthigaster rostrata",268
+"102","Carrie Bow Reef","Fore Reef","2017","Cephalopholis cruentata",1
+"103","Carrie Bow Reef","Fore Reef","2017","Chromis cyanea",2
+"104","Carrie Bow Reef","Fore Reef","2017","Clepticus parrae",39
+"105","Carrie Bow Reef","Fore Reef","2017","Haemulon flavolineatum",1
+"106","Carrie Bow Reef","Fore Reef","2017","Haemulon plumierii",1
+"107","Carrie Bow Reef","Fore Reef","2017","Halichoeres garnoti",6
+"108","Carrie Bow Reef","Fore Reef","2017","Halichoeres maculipinna",2
+"109","Carrie Bow Reef","Fore Reef","2017","Holocentrus rufus",1
+"110","Carrie Bow Reef","Fore Reef","2017","Hypoplectrus nigricans",1
+"111","Carrie Bow Reef","Fore Reef","2017","Scarus iseri",9
+"112","Carrie Bow Reef","Fore Reef","2017","Sparisoma aurofrenatum",10
+"113","Carrie Bow Reef","Fore Reef","2017","Stegastes diencaeus",12
+"114","Carrie Bow Reef","Fore Reef","2017","Stegastes partitus",27
+"115","Carrie Bow Reef","Fore Reef","2017","Stegastes planifrons",1
+"116","Carrie Bow Reef","Fore Reef","2017","Stegastes variabilis",1
+"117","Carrie Bow Reef","Fore Reef","2017","Thalassoma bifasciatum",8
+"118","Carrie Bow Patch Reef","Patch Reef","2015","Acanthemblemaria aspera",5
+"119","Carrie Bow Patch Reef","Patch Reef","2015","Coryphopterus dicrus",9
+"120","Carrie Bow Patch Reef","Patch Reef","2015","Coryphopterus eidolon",50
+"121","Carrie Bow Patch Reef","Patch Reef","2015","Coryphopterus personatus",3
+"122","Carrie Bow Patch Reef","Patch Reef","2015","Elacatinus lobeli",3
+"123","Carrie Bow Patch Reef","Patch Reef","2015","Gymnothorax miliaris",2
+"124","Carrie Bow Patch Reef","Patch Reef","2015","Opistognathus sp.",1
+"125","Carrie Bow Patch Reef","Patch Reef","2015","Serranus tigrinus",2
+"126","Carrie Bow Patch Reef","Patch Reef","2015","Acanthurus bahianus",1
+"127","Carrie Bow Patch Reef","Patch Reef","2015","Acanthurus tractus",2
+"128","Carrie Bow Patch Reef","Patch Reef","2015","Calamus calamus",1
+"129","Carrie Bow Patch Reef","Patch Reef","2015","Canthigaster rostrata",1
+"130","Carrie Bow Patch Reef","Patch Reef","2015","Cephalopholis cruentata",2
+"131","Carrie Bow Patch Reef","Patch Reef","2015","Chaetodon capistratus",1
+"132","Carrie Bow Patch Reef","Patch Reef","2015","Chromis cyanea",24
+"133","Carrie Bow Patch Reef","Patch Reef","2015","Chromis multilineata",2
+"134","Carrie Bow Patch Reef","Patch Reef","2015","Haemulon flavolineatum",3
+"135","Carrie Bow Patch Reef","Patch Reef","2015","Haemulon plumierii",1
+"136","Carrie Bow Patch Reef","Patch Reef","2015","Halichoeres garnoti",13
+"137","Carrie Bow Patch Reef","Patch Reef","2015","Halichoeres maculipinna",1
+"138","Carrie Bow Patch Reef","Patch Reef","2015","Holocentrus adscensionis",4
+"139","Carrie Bow Patch Reef","Patch Reef","2015","Holocentrus rufus",3
+"140","Carrie Bow Patch Reef","Patch Reef","2015","Scarus iseri",6
+"141","Carrie Bow Patch Reef","Patch Reef","2015","Sparisoma aurofrenatum",19
+"142","Carrie Bow Patch Reef","Patch Reef","2015","Sparisoma viride",6
+"143","Carrie Bow Patch Reef","Patch Reef","2015","Stegastes partitus",64
+"144","Carrie Bow Patch Reef","Patch Reef","2015","Stegastes planifrons",30
+"145","Carrie Bow Patch Reef","Patch Reef","2015","Stegastes variabilis",3
+"146","Carrie Bow Patch Reef","Patch Reef","2015","Thalassoma bifasciatum",13
+"147","Carrie Bow Patch Reef","Patch Reef","2016","Canthigaster rostrata",5
+"148","Carrie Bow Patch Reef","Patch Reef","2016","Cephalopholis cruentata",3
+"149","Carrie Bow Patch Reef","Patch Reef","2016","Coryphopterus dicrus",15
+"150","Carrie Bow Patch Reef","Patch Reef","2016","Coryphopterus personatus",10
+"151","Carrie Bow Patch Reef","Patch Reef","2016","Elacatinus lobeli",1
+"152","Carrie Bow Patch Reef","Patch Reef","2016","Gnatholepis thompsoni",1
+"153","Carrie Bow Patch Reef","Patch Reef","2016","Holocentrus rufus",2
+"154","Carrie Bow Patch Reef","Patch Reef","2016","Serranus tigrinus",1
+"155","Carrie Bow Patch Reef","Patch Reef","2016","Acanthurus coeruleus",4
+"156","Carrie Bow Patch Reef","Patch Reef","2016","Chaetodon capistratus",2
+"157","Carrie Bow Patch Reef","Patch Reef","2016","Chromis cyanea",22
+"158","Carrie Bow Patch Reef","Patch Reef","2016","Clepticus parrae",7
+"159","Carrie Bow Patch Reef","Patch Reef","2016","Haemulon flavolineatum",2
+"160","Carrie Bow Patch Reef","Patch Reef","2016","Haemulon plumierii",1
+"161","Carrie Bow Patch Reef","Patch Reef","2016","Halichoeres garnoti",86
+"162","Carrie Bow Patch Reef","Patch Reef","2016","Lachnolaimus maximus",1
+"163","Carrie Bow Patch Reef","Patch Reef","2016","Pomacanthus arcuatus",1
+"164","Carrie Bow Patch Reef","Patch Reef","2016","Scarus iseri",49
+"165","Carrie Bow Patch Reef","Patch Reef","2016","Sparisoma aurofrenatum",19
+"166","Carrie Bow Patch Reef","Patch Reef","2016","Sparisoma viride",4
+"167","Carrie Bow Patch Reef","Patch Reef","2016","Stegastes diencaeus",32
+"168","Carrie Bow Patch Reef","Patch Reef","2016","Stegastes partitus",104
+"169","Carrie Bow Patch Reef","Patch Reef","2016","Stegastes planifrons",78
+"170","Carrie Bow Patch Reef","Patch Reef","2016","Stegastes variabilis",6
+"171","Carrie Bow Patch Reef","Patch Reef","2016","Thalassoma bifasciatum",56
+"172","Carrie Bow Patch Reef","Patch Reef","2017","Acanthemblemaria aspera",3
+"173","Carrie Bow Patch Reef","Patch Reef","2017","Coryphopterus glaucofraenum",2
+"174","Carrie Bow Patch Reef","Patch Reef","2017","Acanthurus chirurgus",3
+"175","Carrie Bow Patch Reef","Patch Reef","2017","Acanthurus coeruleus",2
+"176","Carrie Bow Patch Reef","Patch Reef","2017","Aulostomus maculatus",1
+"177","Carrie Bow Patch Reef","Patch Reef","2017","Canthigaster rostrata",143
+"178","Carrie Bow Patch Reef","Patch Reef","2017","Cephalopholis cruentata",3
+"179","Carrie Bow Patch Reef","Patch Reef","2017","Chaetodon capistratus",3
+"180","Carrie Bow Patch Reef","Patch Reef","2017","Chaetodon ocellatus",1
+"181","Carrie Bow Patch Reef","Patch Reef","2017","Chromis cyanea",5
+"182","Carrie Bow Patch Reef","Patch Reef","2017","Haemulon flavolineatum",2
+"183","Carrie Bow Patch Reef","Patch Reef","2017","Halichoeres garnoti",11
+"184","Carrie Bow Patch Reef","Patch Reef","2017","Halichoeres maculipinna",2
+"185","Carrie Bow Patch Reef","Patch Reef","2017","Holocentrus adscensionis",1
+"186","Carrie Bow Patch Reef","Patch Reef","2017","Holocentrus rufus",3
+"187","Carrie Bow Patch Reef","Patch Reef","2017","Pomacanthus arcuatus",1
+"188","Carrie Bow Patch Reef","Patch Reef","2017","Scarus iseri",27
+"189","Carrie Bow Patch Reef","Patch Reef","2017","Serranus tigrinus",2
+"190","Carrie Bow Patch Reef","Patch Reef","2017","Sparisoma aurofrenatum",3
+"191","Carrie Bow Patch Reef","Patch Reef","2017","Sparisoma viride",1
+"192","Carrie Bow Patch Reef","Patch Reef","2017","Stegastes diencaeus",14
+"193","Carrie Bow Patch Reef","Patch Reef","2017","Stegastes partitus",78
+"194","Carrie Bow Patch Reef","Patch Reef","2017","Stegastes planifrons",12
+"195","Carrie Bow Patch Reef","Patch Reef","2017","Thalassoma bifasciatum",17
+"196","Carrie Bow Sand","Sand","2015","Bothus lunatus",2
+"197","Carrie Bow Sand","Sand","2015","Coryphopterus dicrus",5
+"198","Carrie Bow Sand","Sand","2015","Ptereleotris helenae",2
+"199","Carrie Bow Sand","Sand","2015","Sphoeroides spengleri",1
+"200","Carrie Bow Sand","Sand","2015","Cryptotomus roseus",2
+"201","Carrie Bow Sand","Sand","2015","Diplectrum bivittatum",1
+"202","Carrie Bow Sand","Sand","2015","Haemulon sp.",1
+"203","Carrie Bow Sand","Sand","2015","Halichoeres bivittatus",4
+"204","Carrie Bow Sand","Sand","2015","Ptereleotris calliura",1
+"205","Carrie Bow Sand","Sand","2015","Ptereleotris randalli",1
+"206","Carrie Bow Sand","Sand","2015","Serranus tortugarum",1
+"207","Carrie Bow Sand","Sand","2015","Stegastes partitus",7
+"208","Carrie Bow Sand","Sand","2015","Xyrichtys splendens",4
+"209","Carrie Bow Sand","Sand","2016","Bothus ocellatus",1
+"210","Carrie Bow Sand","Sand","2016","Coryphopterus dicrus",3
+"211","Carrie Bow Sand","Sand","2016","Diplectrum bivittatum",1
+"212","Carrie Bow Sand","Sand","2016","Ptereleotris helenae",1
+"213","Carrie Bow Sand","Sand","2016","Serranus baldwini",2
+"214","Carrie Bow Sand","Sand","2016","Carangoides bartholomaei",46
+"215","Carrie Bow Sand","Sand","2016","Carangoides ruber",38
+"216","Carrie Bow Sand","Sand","2016","Caranx crysos",18
+"217","Carrie Bow Sand","Sand","2016","Cryptotomus roseus",3
+"218","Carrie Bow Sand","Sand","2016","Euthynnus alletteratus",2
+"219","Carrie Bow Sand","Sand","2016","Halichoeres bivittatus",2
+"220","Carrie Bow Sand","Sand","2016","Sparisoma viride",1
+"221","Carrie Bow Sand","Sand","2016","Stegastes partitus",1
+"222","Carrie Bow Sand","Sand","2016","Xyrichtys novacula",1
+"223","Carrie Bow Sand","Sand","2016","Xyrichtys splendens",15
+"224","Carrie Bow Sand","Sand","2017","Bothus lunatus",1
+"225","Carrie Bow Sand","Sand","2017","Petrochirus diogenes",1
+"226","Carrie Bow Sand","Sand","2017","Trachinocephalus myops",1
+"227","Carrie Bow Sand","Sand","2017","Canthigaster rostrata",33
+"228","Carrie Bow Sand","Sand","2017","Halichoeres bivittatus",5
+"229","Carrie Bow Sand","Sand","2017","Ptereleotris helenae",1
+"230","Carrie Bow Sand","Sand","2017","Stegastes partitus",1
+"231","Carrie Bow Sand","Sand","2017","Xyrichtys martinicensis",3
+"232","Carrie Bow Sand","Sand","2017","Xyrichtys splendens",9
+"233","Carrie Bow Seagrass","Seagrass","2015","Monacanthus tuckeri",1
+"234","Carrie Bow Seagrass","Seagrass","2015","Chaetodon ocellatus",1
+"235","Carrie Bow Seagrass","Seagrass","2015","Halichoeres bivittatus",6
+"236","Carrie Bow Seagrass","Seagrass","2015","Myrichthys breviceps",1
+"237","Carrie Bow Seagrass","Seagrass","2015","Serranus baldwini",1
+"238","Carrie Bow Seagrass","Seagrass","2015","Sparisoma radians",6
+"239","Carrie Bow Seagrass","Seagrass","2015","Xyrichtys splendens",1
+"240","Carrie Bow Seagrass","Seagrass","2016","Canthigaster rostrata",1
+"241","Carrie Bow Seagrass","Seagrass","2016","Malacoctenus macropus",1
+"242","Carrie Bow Seagrass","Seagrass","2016","Halichoeres bivittatus",1
+"243","Carrie Bow Seagrass","Seagrass","2017","Malacoctenus macropus",1
+"244","Carrie Bow Seagrass","Seagrass","2017","Serranus baldwini",1
+"245","Carrie Bow Seagrass","Seagrass","2017","Sygnathidae sp.",1
+"246","Carrie Bow Seagrass","Seagrass","2017","Acanthurus chirurgus",1
+"247","Carrie Bow Seagrass","Seagrass","2017","Canthigaster rostrata",29
+"248","Carrie Bow Seagrass","Seagrass","2017","Halichoeres bivittatus",13
+"249","Carrie Bow Seagrass","Seagrass","2017","Scarus iseri",7
+"250","Carrie Bow Seagrass","Seagrass","2017","Scarus spp.",2
+"251","Carrie Bow Seagrass","Seagrass","2017","Sparisoma radians",4
+"252","Curlew Patch Reef","Patch Reef","2015","Cephalopholis cruentata",1
+"253","Curlew Patch Reef","Patch Reef","2015","Coryphopterus dicrus",5
+"254","Curlew Patch Reef","Patch Reef","2015","Gnatholepis thompsoni",13
+"255","Curlew Patch Reef","Patch Reef","2015","Gymnothorax moringa",1
+"256","Curlew Patch Reef","Patch Reef","2015","Acanthurus bahianus",1
+"257","Curlew Patch Reef","Patch Reef","2015","Acanthurus coeruleus",1
+"258","Curlew Patch Reef","Patch Reef","2015","Carangoides bartholomaei",17
+"259","Curlew Patch Reef","Patch Reef","2015","Chaetodon capistratus",3
+"260","Curlew Patch Reef","Patch Reef","2015","Chaetodon striatus",1
+"261","Curlew Patch Reef","Patch Reef","2015","Chromis cyanea",3
+"262","Curlew Patch Reef","Patch Reef","2015","Chromis multilineata",1
+"263","Curlew Patch Reef","Patch Reef","2015","Clepticus parrae",5
+"264","Curlew Patch Reef","Patch Reef","2015","Epinephelus guttatus",1
+"265","Curlew Patch Reef","Patch Reef","2015","Haemulon flavolineatum",2
+"266","Curlew Patch Reef","Patch Reef","2015","Halichoeres garnoti",21
+"267","Curlew Patch Reef","Patch Reef","2015","Scarus iseri",30
+"268","Curlew Patch Reef","Patch Reef","2015","Sparisoma aurofrenatum",19
+"269","Curlew Patch Reef","Patch Reef","2015","Sparisoma chrysopterum",1
+"270","Curlew Patch Reef","Patch Reef","2015","Sparisoma radians",2
+"271","Curlew Patch Reef","Patch Reef","2015","Sparisoma viride",1
+"272","Curlew Patch Reef","Patch Reef","2015","Stegastes adustus",9
+"273","Curlew Patch Reef","Patch Reef","2015","Stegastes partitus",41
+"274","Curlew Patch Reef","Patch Reef","2015","Stegastes planifrons",7
+"275","Curlew Patch Reef","Patch Reef","2015","Stegastes variabilis",1
+"276","Curlew Patch Reef","Patch Reef","2015","Thalassoma bifasciatum",29
+"277","Curlew Patch Reef","Patch Reef","2016","Cephalopholis cruentata",2
+"278","Curlew Patch Reef","Patch Reef","2016","Coryphopterus dicrus",3
+"279","Curlew Patch Reef","Patch Reef","2016","Coryphopterus personatus",10
+"280","Curlew Patch Reef","Patch Reef","2016","Gymnothorax moringa",2
+"281","Curlew Patch Reef","Patch Reef","2016","Holocentrus rufus",1
+"282","Curlew Patch Reef","Patch Reef","2016","Serranus tigrinus",3
+"283","Curlew Patch Reef","Patch Reef","2016","Abudefduf saxatilis",2
+"284","Curlew Patch Reef","Patch Reef","2016","Acanthurus tractus",2
+"285","Curlew Patch Reef","Patch Reef","2016","Chromis cyanea",5
+"286","Curlew Patch Reef","Patch Reef","2016","Chromis multilineata",4
+"287","Curlew Patch Reef","Patch Reef","2016","Clepticus parrae",4
+"288","Curlew Patch Reef","Patch Reef","2016","Haemulon flavolineatum",4
+"289","Curlew Patch Reef","Patch Reef","2016","Haemulon plumierii",1
+"290","Curlew Patch Reef","Patch Reef","2016","Haemulon sciurus",4
+"291","Curlew Patch Reef","Patch Reef","2016","Halichoeres bivittatus",1
+"292","Curlew Patch Reef","Patch Reef","2016","Halichoeres cyanocephalus",2
+"293","Curlew Patch Reef","Patch Reef","2016","Halichoeres garnoti",68
+"294","Curlew Patch Reef","Patch Reef","2016","Holacanthus tricolor",2
+"295","Curlew Patch Reef","Patch Reef","2016","Scarus iseri",132
+"296","Curlew Patch Reef","Patch Reef","2016","Sparisoma aurofrenatum",20
+"297","Curlew Patch Reef","Patch Reef","2016","Sparisoma viride",2
+"298","Curlew Patch Reef","Patch Reef","2016","Stegastes diencaeus",10
+"299","Curlew Patch Reef","Patch Reef","2016","Stegastes partitus",85
+"300","Curlew Patch Reef","Patch Reef","2016","Stegastes planifrons",68
+"301","Curlew Patch Reef","Patch Reef","2016","Thalassoma bifasciatum",100
+"302","Curlew Patch Reef","Patch Reef","2017","Coryphopterus glaucofraenum",1
+"303","Curlew Patch Reef","Patch Reef","2017","Elacatinus oceanops",3
+"304","Curlew Patch Reef","Patch Reef","2017","Abudefduf saxatilis",2
+"305","Curlew Patch Reef","Patch Reef","2017","Acanthurus chirurgus",1
+"306","Curlew Patch Reef","Patch Reef","2017","Bodianus rufus",1
+"307","Curlew Patch Reef","Patch Reef","2017","Canthigaster rostrata",149
+"308","Curlew Patch Reef","Patch Reef","2017","Cephalopholis cruentata",2
+"309","Curlew Patch Reef","Patch Reef","2017","Chaetodon capistratus",1
+"310","Curlew Patch Reef","Patch Reef","2017","Chromis cyanea",12
+"311","Curlew Patch Reef","Patch Reef","2017","Chromis multilineata",2
+"312","Curlew Patch Reef","Patch Reef","2017","Clepticus parrae",7
+"313","Curlew Patch Reef","Patch Reef","2017","Halichoeres bivittatus",20
+"314","Curlew Patch Reef","Patch Reef","2017","Halichoeres garnoti",14
+"315","Curlew Patch Reef","Patch Reef","2017","Halichoeres maculipinna",4
+"316","Curlew Patch Reef","Patch Reef","2017","Halichoeres pictus",1
+"317","Curlew Patch Reef","Patch Reef","2017","Holocentrus adscensionis",1
+"318","Curlew Patch Reef","Patch Reef","2017","Holocentrus rufus",1
+"319","Curlew Patch Reef","Patch Reef","2017","Pomacanthus arcuatus",1
+"320","Curlew Patch Reef","Patch Reef","2017","Pomacanthus paru",1
+"321","Curlew Patch Reef","Patch Reef","2017","Scarus iseri",30
+"322","Curlew Patch Reef","Patch Reef","2017","Sparisoma atomarium",1
+"323","Curlew Patch Reef","Patch Reef","2017","Sparisoma aurofrenatum",6
+"324","Curlew Patch Reef","Patch Reef","2017","Sparisoma viride",3
+"325","Curlew Patch Reef","Patch Reef","2017","Stegastes diencaeus",12
+"326","Curlew Patch Reef","Patch Reef","2017","Stegastes partitus",67
+"327","Curlew Patch Reef","Patch Reef","2017","Stegastes planifrons",10
+"328","Curlew Patch Reef","Patch Reef","2017","Stegastes variabilis",2
+"329","Curlew Patch Reef","Patch Reef","2017","Thalassoma bifasciatum",19
+"330","Curlew Sand","Sand","2015","Cryptotomus roseus",12
+"331","Curlew Sand","Sand","2015","Diplectrum bivittatum",1
+"332","Curlew Sand","Sand","2015","Haemulon sp.",5
+"333","Curlew Sand","Sand","2015","Serranus baldwini",1
+"334","Curlew Sand","Sand","2015","Serranus tigrinus",1
+"335","Curlew Sand","Sand","2015","Xyrichtys splendens",13
+"336","Curlew Sand","Sand","2016","Synodus intermedius",1
+"337","Curlew Sand","Sand","2016","Xyrichtys martinicensis",3
+"338","Curlew Sand","Sand","2016","Canthigaster rostrata",7
+"339","Curlew Sand","Sand","2016","Cryptotomus roseus",3
+"340","Curlew Sand","Sand","2016","Halichoeres bivittatus",2
+"341","Curlew Sand","Sand","2016","Ptereleotris helenae",1
+"342","Curlew Sand","Sand","2016","Serranus baldwini",1
+"343","Curlew Sand","Sand","2016","Serranus tortugarum",1
+"344","Curlew Sand","Sand","2016","Sparisoma radians",1
+"345","Curlew Sand","Sand","2016","Stegastes leucostictus",1
+"346","Curlew Sand","Sand","2016","Xyrichtys splendens",10
+"347","Curlew Sand","Sand","2017","Gnatholepis cauerensis",1
+"348","Curlew Sand","Sand","2017","Canthigaster rostrata",59
+"349","Curlew Sand","Sand","2017","Cryptotomus roseus",10
+"350","Curlew Sand","Sand","2017","Haemulon spp.",18
+"351","Curlew Sand","Sand","2017","Halichoeres bivittatus",1
+"352","Curlew Sand","Sand","2017","Lutjanus synagris",1
+"353","Curlew Sand","Sand","2017","Serranus baldwini",2
+"354","Curlew Sand","Sand","2017","Serranus tortugarum",5
+"355","Curlew Sand","Sand","2017","Xyrichtys martinicensis",2
+"356","Curlew Sand","Sand","2017","Xyrichtys splendens",8
+"357","Curlew Seagrass","Seagrass","2015","Canthigaster rostrata",1
+"358","Curlew Seagrass","Seagrass","2015","Callionymus bairdi",3
+"359","Curlew Seagrass","Seagrass","2015","Serranus baldwini",1
+"360","Curlew Seagrass","Seagrass","2015","Acanthurus bahianus",1
+"361","Curlew Seagrass","Seagrass","2015","Acanthurus tractus",1
+"362","Curlew Seagrass","Seagrass","2015","Cryptotomus roseus",4
+"363","Curlew Seagrass","Seagrass","2015","Halichoeres bivittatus",8
+"364","Curlew Seagrass","Seagrass","2015","Halichoeres poeyi",2
+"365","Curlew Seagrass","Seagrass","2015","Hypoplectrus spp.",1
+"366","Curlew Seagrass","Seagrass","2015","Sparisoma radians",8
+"367","Curlew Seagrass","Seagrass","2015","Xyrichtys splendens",1
+"368","Curlew Seagrass","Seagrass","2016","Malacanthus plumieri",1
+"369","Curlew Seagrass","Seagrass","2016","Canthigaster rostrata",1
+"370","Curlew Seagrass","Seagrass","2016","Cryptotomus roseus",6
+"371","Curlew Seagrass","Seagrass","2016","Haemulon spp.",4
+"372","Curlew Seagrass","Seagrass","2016","Halichoeres bivittatus",20
+"373","Curlew Seagrass","Seagrass","2016","Sparisoma radians",12
+"374","Curlew Seagrass","Seagrass","2016","Stegastes leucostictus",1
+"375","Curlew Seagrass","Seagrass","2016","Xyrichtys splendens",8
+"376","Curlew Seagrass","Seagrass","2017","Canthigaster rostrata",46
+"377","Curlew Seagrass","Seagrass","2017","Cryptotomus roseus",2
+"378","Curlew Seagrass","Seagrass","2017","Halichoeres bivittatus",17
+"379","Curlew Seagrass","Seagrass","2017","Halichoeres poeyi",1
+"380","Curlew Seagrass","Seagrass","2017","Serranus tigrinus",3
+"381","Curlew Seagrass","Seagrass","2017","Sparisoma atomarium",1
+"382","Curlew Seagrass","Seagrass","2017","Sparisoma radians",1
+"383","Curlew Seagrass","Seagrass","2017","Xyrichtys martinicensis",1
+"384","Curlew Seagrass","Seagrass","2017","Xyrichtys splendens",1
+"385","House Reef","Patch Reef","2015","Acanthemblemaria aspera",11
+"386","House Reef","Patch Reef","2015","Amblycirrhitus pinos",2
+"387","House Reef","Patch Reef","2015","Cephalopholis cruentata",1
+"388","House Reef","Patch Reef","2015","Coryphopterus dicrus",1
+"389","House Reef","Patch Reef","2015","Coryphopterus eidolon",1
+"390","House Reef","Patch Reef","2015","Elacatinus lobeli",14
+"391","House Reef","Patch Reef","2015","Gymnothorax miliaris",1
+"392","House Reef","Patch Reef","2015","Gymnothorax moringa",1
+"393","House Reef","Patch Reef","2015","Heteropriacanthus cruentatus",1
+"394","House Reef","Patch Reef","2015","Malacoctenus triangulatus",2
+"395","House Reef","Patch Reef","2015","Serranus tigrinus",1
+"396","House Reef","Patch Reef","2015","Tigrigobius dilepis",3
+"397","House Reef","Patch Reef","2015","Abudefduf saxatilis",1
+"398","House Reef","Patch Reef","2015","Acanthurus bahianus",1
+"399","House Reef","Patch Reef","2015","Acanthurus chirurgus",1
+"400","House Reef","Patch Reef","2015","Acanthurus coeruleus",1
+"401","House Reef","Patch Reef","2015","Acanthurus tractus",1
+"402","House Reef","Patch Reef","2015","Cantherhines pullus",1
+"403","House Reef","Patch Reef","2015","Chaetodon capistratus",5
+"404","House Reef","Patch Reef","2015","Chromis cyanea",1
+"405","House Reef","Patch Reef","2015","Chromis multilineata",1
+"406","House Reef","Patch Reef","2015","Haemulon flavolineatum",5
+"407","House Reef","Patch Reef","2015","Haemulon sciurus",1
+"408","House Reef","Patch Reef","2015","Halichoeres bivittatus",1
+"409","House Reef","Patch Reef","2015","Halichoeres garnoti",8
+"410","House Reef","Patch Reef","2015","Holocentrus rufus",2
+"411","House Reef","Patch Reef","2015","Lutjanus mahogoni",1
+"412","House Reef","Patch Reef","2015","Monacanthus tuckeri",1
+"413","House Reef","Patch Reef","2015","Scarus iseri",24
+"414","House Reef","Patch Reef","2015","Sparisoma aurofrenatum",7
+"415","House Reef","Patch Reef","2015","Sparisoma chrysopterum",2
+"416","House Reef","Patch Reef","2015","Sparisoma viride",5
+"417","House Reef","Patch Reef","2015","Stegastes adustus",17
+"418","House Reef","Patch Reef","2015","Stegastes partitus",38
+"419","House Reef","Patch Reef","2015","Stegastes planifrons",9
+"420","House Reef","Patch Reef","2015","Stegastes variabilis",4
+"421","House Reef","Patch Reef","2015","Thalassoma bifasciatum",33
+"422","House Reef","Patch Reef","2016","Acanthemblemaria aspera",2
+"423","House Reef","Patch Reef","2016","Cephalopholis cruentata",2
+"424","House Reef","Patch Reef","2016","Coryphopterus dicrus",1
+"425","House Reef","Patch Reef","2016","Coryphopterus glaucofraenum",5
+"426","House Reef","Patch Reef","2016","Gnatholepis thompsoni",3
+"427","House Reef","Patch Reef","2016","Gymnothorax moringa",1
+"428","House Reef","Patch Reef","2016","Holocentrus rufus",1
+"429","House Reef","Patch Reef","2016","Malacoctenus triangulatus",3
+"430","House Reef","Patch Reef","2016","Panulirus argus",1
+"431","House Reef","Patch Reef","2016","Abudefduf saxatilis",7
+"432","House Reef","Patch Reef","2016","Acanthurus coeruleus",2
+"433","House Reef","Patch Reef","2016","Acanthurus tractus",2
+"434","House Reef","Patch Reef","2016","Anisotremus virginicus",1
+"435","House Reef","Patch Reef","2016","Canthigaster rostrata",1
+"436","House Reef","Patch Reef","2016","Carangoides ruber",1
+"437","House Reef","Patch Reef","2016","Chromis cyanea",1
+"438","House Reef","Patch Reef","2016","Haemulon flavolineatum",4
+"439","House Reef","Patch Reef","2016","Haemulon sciurus",2
+"440","House Reef","Patch Reef","2016","Halichoeres garnoti",9
+"441","House Reef","Patch Reef","2016","Halichoeres radiatus",3
+"442","House Reef","Patch Reef","2016","Lutjanus mahogoni",2
+"443","House Reef","Patch Reef","2016","Microspathodon chrysurus",2
+"444","House Reef","Patch Reef","2016","Pomacanthus arcuatus",1
+"445","House Reef","Patch Reef","2016","Scarus iseri",38
+"446","House Reef","Patch Reef","2016","Serranus tigrinus",1
+"447","House Reef","Patch Reef","2016","Sparisoma aurofrenatum",6
+"448","House Reef","Patch Reef","2016","Sparisoma viride",6
+"449","House Reef","Patch Reef","2016","Stegastes diencaeus",26
+"450","House Reef","Patch Reef","2016","Stegastes partitus",4
+"451","House Reef","Patch Reef","2016","Stegastes planifrons",1
+"452","House Reef","Patch Reef","2016","Stegastes variabilis",2
+"453","House Reef","Patch Reef","2016","Thalassoma bifasciatum",39
+"454","House Reef","Patch Reef","2017","Gnatholepis cauerensis",6
+"455","House Reef","Patch Reef","2017","Abudefduf saxatilis",1
+"456","House Reef","Patch Reef","2017","Canthigaster rostrata",80
+"457","House Reef","Patch Reef","2017","Chaetodon capistratus",2
+"458","House Reef","Patch Reef","2017","Haemulon flavolineatum",2
+"459","House Reef","Patch Reef","2017","Halichoeres bivittatus",5
+"460","House Reef","Patch Reef","2017","Halichoeres garnoti",15
+"461","House Reef","Patch Reef","2017","Halichoeres maculipinna",1
+"462","House Reef","Patch Reef","2017","Parablennius marmoreus",1
+"463","House Reef","Patch Reef","2017","Scarus iseri",11
+"464","House Reef","Patch Reef","2017","Sparisoma aurofrenatum",4
+"465","House Reef","Patch Reef","2017","Sparisoma viride",1
+"466","House Reef","Patch Reef","2017","Stegastes diencaeus",12
+"467","House Reef","Patch Reef","2017","Stegastes partitus",3
+"468","House Reef","Patch Reef","2017","Stegastes planifrons",1
+"469","House Reef","Patch Reef","2017","Thalassoma bifasciatum",17
+"470","South Reef","Fore Reef","2015","Amblycirrhitus pinos",1
+"471","South Reef","Fore Reef","2015","Coryphopterus dicrus",2
+"472","South Reef","Fore Reef","2015","Coryphopterus personatus",4
+"473","South Reef","Fore Reef","2015","Elacatinus lobeli",15
+"474","South Reef","Fore Reef","2015","Synodus intermedius",1
+"475","South Reef","Fore Reef","2015","Acanthurus bahianus",1
+"476","South Reef","Fore Reef","2015","Acanthurus tractus",6
+"477","South Reef","Fore Reef","2015","Cephalopholis cruentata",1
+"478","South Reef","Fore Reef","2015","Chaetodon capistratus",2
+"479","South Reef","Fore Reef","2015","Chaetodon striatus",1
+"480","South Reef","Fore Reef","2015","Chromis cyanea",13
+"481","South Reef","Fore Reef","2015","Haemulon carbonarium",1
+"482","South Reef","Fore Reef","2015","Haemulon flavolineatum",2
+"483","South Reef","Fore Reef","2015","Haemulon plumierii",3
+"484","South Reef","Fore Reef","2015","Haemulon sciurus",2
+"485","South Reef","Fore Reef","2015","Halichoeres garnoti",13
+"486","South Reef","Fore Reef","2015","Halichoeres maculipinna",1
+"487","South Reef","Fore Reef","2015","Scarus iseri",24
+"488","South Reef","Fore Reef","2015","Serranus tigrinus",2
+"489","South Reef","Fore Reef","2015","Sparisoma atomarium",2
+"490","South Reef","Fore Reef","2015","Sparisoma aurofrenatum",12
+"491","South Reef","Fore Reef","2015","Sparisoma chrysopterum",1
+"492","South Reef","Fore Reef","2015","Sparisoma viride",7
+"493","South Reef","Fore Reef","2015","Stegastes adustus",8
+"494","South Reef","Fore Reef","2015","Stegastes partitus",20
+"495","South Reef","Fore Reef","2015","Thalassoma bifasciatum",18
+"496","South Reef","Fore Reef","2016","Acanthemblemaria aspera",6
+"497","South Reef","Fore Reef","2016","Blenniid sp. (mottled brown)",1
+"498","South Reef","Fore Reef","2016","Coryphopterus dicrus",2
+"499","South Reef","Fore Reef","2016","Coryphopterus personatus",15
+"500","South Reef","Fore Reef","2016","Elacatinus oceanops",1
+"501","South Reef","Fore Reef","2016","Elacatinus spp.",1
+"502","South Reef","Fore Reef","2016","Gnatholepis thompsoni",6
+"503","South Reef","Fore Reef","2016","Holocentrus rufus",1
+"504","South Reef","Fore Reef","2016","Acanthurus coeruleus",2
+"505","South Reef","Fore Reef","2016","Acanthurus tractus",2
+"506","South Reef","Fore Reef","2016","Canthigaster rostrata",1
+"507","South Reef","Fore Reef","2016","Chaetodon capistratus",1
+"508","South Reef","Fore Reef","2016","Chaetodon striatus",1
+"509","South Reef","Fore Reef","2016","Chromis cyanea",9
+"510","South Reef","Fore Reef","2016","Clepticus parrae",6
+"511","South Reef","Fore Reef","2016","Haemulon flavolineatum",1
+"512","South Reef","Fore Reef","2016","Haemulon plumierii",2
+"513","South Reef","Fore Reef","2016","Halichoeres cyanocephalus",1
+"514","South Reef","Fore Reef","2016","Halichoeres garnoti",14
+"515","South Reef","Fore Reef","2016","Halichoeres maculipinna",1
+"516","South Reef","Fore Reef","2016","Holacanthus tricolor",1
+"517","South Reef","Fore Reef","2016","Hypoplectrus nigricans",1
+"518","South Reef","Fore Reef","2016","Scarus iseri",21
+"519","South Reef","Fore Reef","2016","Serranus tigrinus",2
+"520","South Reef","Fore Reef","2016","Sparisoma atomarium",2
+"521","South Reef","Fore Reef","2016","Sparisoma aurofrenatum",9
+"522","South Reef","Fore Reef","2016","Sparisoma chrysopterum",4
+"523","South Reef","Fore Reef","2016","Sparisoma viride",1
+"524","South Reef","Fore Reef","2016","Stegastes diencaeus",13
+"525","South Reef","Fore Reef","2016","Stegastes partitus",21
+"526","South Reef","Fore Reef","2016","Stegastes variabilis",1
+"527","South Reef","Fore Reef","2016","Thalassoma bifasciatum",25
+"528","South Reef","Fore Reef","2017","Acanthemblemaria aspera",3
+"529","South Reef","Fore Reef","2017","Elacatinus lobeli",2
+"530","South Reef","Fore Reef","2017","Elacatinus oceanops",4
+"531","South Reef","Fore Reef","2017","Gnatholepis cauerensis",3
+"532","South Reef","Fore Reef","2017","Gnatholepis thompsoni",4
+"533","South Reef","Fore Reef","2017","Serranus tigrinus",5
+"534","South Reef","Fore Reef","2017","Acanthurus chirurgus",2
+"535","South Reef","Fore Reef","2017","Acanthurus coeruleus",1
+"536","South Reef","Fore Reef","2017","Acanthurus tractus",4
+"537","South Reef","Fore Reef","2017","Bodianus rufus",1
+"538","South Reef","Fore Reef","2017","Calamus calamus",1
+"539","South Reef","Fore Reef","2017","Canthigaster rostrata",249
+"540","South Reef","Fore Reef","2017","Cephalopholis cruentata",1
+"541","South Reef","Fore Reef","2017","Chromis cyanea",6
+"542","South Reef","Fore Reef","2017","Haemulon flavolineatum",3
+"543","South Reef","Fore Reef","2017","Halichoeres garnoti",11
+"544","South Reef","Fore Reef","2017","Halichoeres maculipinna",1
+"545","South Reef","Fore Reef","2017","Holocentrus adscensionis",1
+"546","South Reef","Fore Reef","2017","Holocentrus rufus",1
+"547","South Reef","Fore Reef","2017","Hypoplectrus indigo",1
+"548","South Reef","Fore Reef","2017","Scarus iseri",35
+"549","South Reef","Fore Reef","2017","Sparisoma atomarium",3
+"550","South Reef","Fore Reef","2017","Sparisoma aurofrenatum",16
+"551","South Reef","Fore Reef","2017","Stegastes diencaeus",4
+"552","South Reef","Fore Reef","2017","Stegastes partitus",16
+"553","South Reef","Fore Reef","2017","Thalassoma bifasciatum",13
+"554","Tobacco Reef","Fore Reef","2015","Acanthemblemaria aspera",8
+"555","Tobacco Reef","Fore Reef","2015","Coryphopterus dicrus",16
+"556","Tobacco Reef","Fore Reef","2015","Elacatinus lobeli",5
+"557","Tobacco Reef","Fore Reef","2015","Gnatholepis thompsoni",2
+"558","Tobacco Reef","Fore Reef","2015","Serranus baldwini",4
+"559","Tobacco Reef","Fore Reef","2015","Acanthurus bahianus",4
+"560","Tobacco Reef","Fore Reef","2015","Acanthurus coeruleus",2
+"561","Tobacco Reef","Fore Reef","2015","Acanthurus tractus",13
+"562","Tobacco Reef","Fore Reef","2015","Cephalopholis cruentata",2
+"563","Tobacco Reef","Fore Reef","2015","Chaetodon capistratus",2
+"564","Tobacco Reef","Fore Reef","2015","Chaetodon striatus",1
+"565","Tobacco Reef","Fore Reef","2015","Chromis cyanea",2
+"566","Tobacco Reef","Fore Reef","2015","Haemulon flavolineatum",3
+"567","Tobacco Reef","Fore Reef","2015","Halichoeres garnoti",40
+"568","Tobacco Reef","Fore Reef","2015","Holocentrus adscensionis",1
+"569","Tobacco Reef","Fore Reef","2015","Holocentrus rufus",1
+"570","Tobacco Reef","Fore Reef","2015","Hypoplectrus nigricans",1
+"571","Tobacco Reef","Fore Reef","2015","Pseudupeneus maculatus",2
+"572","Tobacco Reef","Fore Reef","2015","Scarus iseri",68
+"573","Tobacco Reef","Fore Reef","2015","Sparisoma atomarium",2
+"574","Tobacco Reef","Fore Reef","2015","Sparisoma aurofrenatum",19
+"575","Tobacco Reef","Fore Reef","2015","Sparisoma chrysopterum",1
+"576","Tobacco Reef","Fore Reef","2015","Sparisoma viride",8
+"577","Tobacco Reef","Fore Reef","2015","Stegastes adustus",1
+"578","Tobacco Reef","Fore Reef","2015","Stegastes partitus",34
+"579","Tobacco Reef","Fore Reef","2015","Stegastes planifrons",2
+"580","Tobacco Reef","Fore Reef","2015","Stegastes variabilis",2
+"581","Tobacco Reef","Fore Reef","2015","Thalassoma bifasciatum",42
+"582","Tobacco Reef","Fore Reef","2016","Cephalopholis cruentata",1
+"583","Tobacco Reef","Fore Reef","2016","Coryphopterus dicrus",26
+"584","Tobacco Reef","Fore Reef","2016","Elacatinus lobeli",1
+"585","Tobacco Reef","Fore Reef","2016","Elacatinus oceanops",1
+"586","Tobacco Reef","Fore Reef","2016","Emblemariopsis sp.[bottomei]",3
+"587","Tobacco Reef","Fore Reef","2016","Gnatholepis thompsoni",1
+"588","Tobacco Reef","Fore Reef","2016","Hypoplectrus nigricans",1
+"589","Tobacco Reef","Fore Reef","2016","Malacoctenus triangulatus",1
+"590","Tobacco Reef","Fore Reef","2016","Serranus tigrinus",3
+"591","Tobacco Reef","Fore Reef","2016","Acanthurus coeruleus",1
+"592","Tobacco Reef","Fore Reef","2016","Acanthurus tractus",3
+"593","Tobacco Reef","Fore Reef","2016","Canthigaster rostrata",1
+"594","Tobacco Reef","Fore Reef","2016","Clepticus parrae",3
+"595","Tobacco Reef","Fore Reef","2016","Halichoeres garnoti",14
+"596","Tobacco Reef","Fore Reef","2016","Halichoeres maculipinna",1
+"597","Tobacco Reef","Fore Reef","2016","Ocyurus chrysurus",1
+"598","Tobacco Reef","Fore Reef","2016","Scarus iseri",26
+"599","Tobacco Reef","Fore Reef","2016","Sparisoma aurofrenatum",14
+"600","Tobacco Reef","Fore Reef","2016","Stegastes diencaeus",3
+"601","Tobacco Reef","Fore Reef","2016","Stegastes partitus",54
+"602","Tobacco Reef","Fore Reef","2016","Stegastes planifrons",3
+"603","Tobacco Reef","Fore Reef","2016","Thalassoma bifasciatum",35
+"604","Tobacco Reef","Fore Reef","2017","Coryphopterus glaucofraenum",3
+"605","Tobacco Reef","Fore Reef","2017","Elacatinus oceanops",3
+"606","Tobacco Reef","Fore Reef","2017","Serranus tigrinus",1
+"607","Tobacco Reef","Fore Reef","2017","Acanthurus chirurgus",3
+"608","Tobacco Reef","Fore Reef","2017","Acanthurus coeruleus",3
+"609","Tobacco Reef","Fore Reef","2017","Acanthurus tractus",5
+"610","Tobacco Reef","Fore Reef","2017","Aulostomus maculatus",1
+"611","Tobacco Reef","Fore Reef","2017","Canthigaster rostrata",339
+"612","Tobacco Reef","Fore Reef","2017","Carangoides ruber",12
+"613","Tobacco Reef","Fore Reef","2017","Cephalopholis cruentata",1
+"614","Tobacco Reef","Fore Reef","2017","Chaetodon capistratus",2
+"615","Tobacco Reef","Fore Reef","2017","Chromis cyanea",1
+"616","Tobacco Reef","Fore Reef","2017","Clepticus parrae",9
+"617","Tobacco Reef","Fore Reef","2017","Haemulon flavolineatum",3
+"618","Tobacco Reef","Fore Reef","2017","Halichoeres cyanocephalus",1
+"619","Tobacco Reef","Fore Reef","2017","Halichoeres garnoti",16
+"620","Tobacco Reef","Fore Reef","2017","Holocentrus adscensionis",1
+"621","Tobacco Reef","Fore Reef","2017","Holocentrus rufus",1
+"622","Tobacco Reef","Fore Reef","2017","Lutjanus apodus",1
+"623","Tobacco Reef","Fore Reef","2017","Ocyurus chrysurus",1
+"624","Tobacco Reef","Fore Reef","2017","Scarus iseri",64
+"625","Tobacco Reef","Fore Reef","2017","Sparisoma atomarium",1
+"626","Tobacco Reef","Fore Reef","2017","Sparisoma aurofrenatum",8
+"627","Tobacco Reef","Fore Reef","2017","Sparisoma rubripinne",1
+"628","Tobacco Reef","Fore Reef","2017","Sparisoma viride",1
+"629","Tobacco Reef","Fore Reef","2017","Stegastes diencaeus",4
+"630","Tobacco Reef","Fore Reef","2017","Stegastes partitus",32
+"631","Tobacco Reef","Fore Reef","2017","Stegastes planifrons",1
+"632","Tobacco Reef","Fore Reef","2017","Thalassoma bifasciatum",12
+"633","Tobacco Reef","Fore Reef","2017","Trachinotus falcatus",1
+"634","Tobacco Mangrove","Mangrove","2015","Coryphopterus personatus",780
+"635","Tobacco Mangrove","Mangrove","2015","Urobatis jamaicensis",1
+"636","Tobacco Mangrove","Mangrove","2015","Abudefduf saxatilis",2
+"637","Tobacco Mangrove","Mangrove","2015","Canthigaster rostrata",1
+"638","Tobacco Mangrove","Mangrove","2015","Haemulon flavolineatum",3
+"639","Tobacco Mangrove","Mangrove","2015","Haemulon sciurus",11
+"640","Tobacco Mangrove","Mangrove","2015","Lutjanus apodus",2
+"641","Tobacco Mangrove","Mangrove","2015","Lutjanus griseus",3
+"642","Tobacco Mangrove","Mangrove","2015","Scarus iseri",12
+"643","Tobacco Mangrove","Mangrove","2015","Sparisoma viride",2
+"644","Tobacco Mangrove","Mangrove","2015","Stegastes leucostictus",2
+"645","Tobacco Mangrove","Mangrove","2015","Stegastes variabilis",5
+"646","Tobacco Mangrove","Mangrove","2015","Thalassoma bifasciatum",3
+"647","Tobacco Mangrove","Mangrove","2016","Coryphopterus dicrus",18
+"648","Tobacco Mangrove","Mangrove","2016","Coryphopterus eidolon",7
+"649","Tobacco Mangrove","Mangrove","2016","Coryphopterus personatus",425
+"650","Tobacco Mangrove","Mangrove","2016","Anisotremus virginicus",1
+"651","Tobacco Mangrove","Mangrove","2016","Canthigaster rostrata",2
+"652","Tobacco Mangrove","Mangrove","2016","Carangoides ruber",1
+"653","Tobacco Mangrove","Mangrove","2016","Gerres cinereus",6
+"654","Tobacco Mangrove","Mangrove","2016","Haemulon flavolineatum",1
+"655","Tobacco Mangrove","Mangrove","2016","Haemulon sciurus",4
+"656","Tobacco Mangrove","Mangrove","2016","Lutjanus analis",1
+"657","Tobacco Mangrove","Mangrove","2016","Lutjanus apodus",8
+"658","Tobacco Mangrove","Mangrove","2016","Lutjanus griseus",3
+"659","Tobacco Mangrove","Mangrove","2016","Lutjanus synagris",1
+"660","Tobacco Mangrove","Mangrove","2016","Scarus iseri",5
+"661","Tobacco Mangrove","Mangrove","2016","Sphyraena barracuda",1
+"662","Tobacco Mangrove","Mangrove","2016","Stegastes diencaeus",3
+"663","Tobacco Mangrove","Mangrove","2016","Stegastes planifrons",1
+"664","Tobacco Mangrove","Mangrove","2017","Coryphopterus glaucofraenum",13
+"665","Tobacco Mangrove","Mangrove","2017","Coryphopterus personatus",86
+"666","Tobacco Mangrove","Mangrove","2017","Gnatholepis cauerensis",10
+"667","Tobacco Mangrove","Mangrove","2017","Abudefduf saxatilis",3
+"668","Tobacco Mangrove","Mangrove","2017","Calamus calamus",1
+"669","Tobacco Mangrove","Mangrove","2017","Clupeid spp.",11
+"670","Tobacco Mangrove","Mangrove","2017","Haemulon plumierii",1
+"671","Tobacco Mangrove","Mangrove","2017","Haemulon sciurus",7
+"672","Tobacco Mangrove","Mangrove","2017","Lutjanus apodus",3
+"673","Tobacco Mangrove","Mangrove","2017","Lutjanus cyanopterus",1
+"674","Tobacco Mangrove","Mangrove","2017","Pomacanthus paru",2
+"675","Tobacco Mangrove","Mangrove","2017","Scarus iseri",3
+"676","Tobacco Mangrove","Mangrove","2017","Sphyraena barracuda",3
+"677","Tobacco Mangrove","Mangrove","2017","Stegastes diencaeus",1
+"678","Tobacco Mangrove","Mangrove","2017","Stegastes leucostictus",1
+"679","Tobacco Sand","Sand","2015","Bothus ocellatus",1
+"680","Tobacco Sand","Sand","2015","Diplectrum bivittatum",1
+"681","Tobacco Sand","Sand","2015","Synodus intermedius",1
+"682","Tobacco Sand","Sand","2015","Xyrichtys splendens",5
+"683","Tobacco Sand","Sand","2015","Apogon robbyi",8
+"684","Tobacco Sand","Sand","2015","Haemulon sp.",5
+"685","Tobacco Sand","Sand","2016","Coryphopterus dicrus",1
+"686","Tobacco Sand","Sand","2016","Ptereleotris calliura",2
+"687","Tobacco Sand","Sand","2016","Xyrichtys martinicensis",1
+"688","Tobacco Sand","Sand","2016","Halichoeres bivittatus",16
+"689","Tobacco Sand","Sand","2016","Halichoeres garnoti",2
+"690","Tobacco Sand","Sand","2016","Malacanthus plumieri",1
+"691","Tobacco Sand","Sand","2016","Ptereleotris helenae",7
+"692","Tobacco Sand","Sand","2016","Scarus taeniopterus",2
+"693","Tobacco Sand","Sand","2016","Xyrichtys novacula",6
+"694","Tobacco Sand","Sand","2017","Bothus lunatus",1
+"695","Tobacco Sand","Sand","2017","Synodus intermedius",1
+"696","Tobacco Sand","Sand","2017","Canthigaster rostrata",36
+"697","Tobacco Sand","Sand","2017","Cryptotomus roseus",6
+"698","Tobacco Sand","Sand","2017","Halichoeres bivittatus",1
+"699","Tobacco Sand","Sand","2017","Serranus tortugarum",1
+"700","Tobacco Sand","Sand","2017","Sparisoma radians",1
+"701","Tobacco Sand","Sand","2017","Thalassoma bifasciatum",2
+"702","Tobacco Sand","Sand","2017","Xyrichtys splendens",5
+"703","Tobacco Seagrass","Seagrass","2017","Canthigaster rostrata",4
+"704","Tobacco Seagrass","Seagrass","2017","Cryptotomus roseus",3
+"705","Tobacco Seagrass","Seagrass","2017","Haemulon plumierii",1
+"706","Tobacco Seagrass","Seagrass","2017","Haemulon sciurus",20
+"707","Tobacco Seagrass","Seagrass","2017","Haemulon spp.",10
+"708","Tobacco Seagrass","Seagrass","2017","Halichoeres bivittatus",9
+"709","Tobacco Seagrass","Seagrass","2017","Scarus iseri",1
+"710","Tobacco Seagrass","Seagrass","2017","Sparisoma aurofrenatum",2
+"711","Tobacco Seagrass","Seagrass","2017","Sparisoma radians",2
+"712","Tobacco Seagrass","Seagrass","2017","Sphoeroides spengleri",1
+"713","Twin Cays Mangrove","Mangrove","2015","Abudefduf saxatilis",4
+"714","Twin Cays Mangrove","Mangrove","2015","Canthigaster rostrata",1
+"715","Twin Cays Mangrove","Mangrove","2015","Caranx hippos",1
+"716","Twin Cays Mangrove","Mangrove","2015","Chaetodipterus faber",3
+"717","Twin Cays Mangrove","Mangrove","2015","Chaetodon capistratus",1
+"718","Twin Cays Mangrove","Mangrove","2015","Clupeidae",3984
+"719","Twin Cays Mangrove","Mangrove","2015","Eucinostomus melanopterus",2
+"720","Twin Cays Mangrove","Mangrove","2015","Gerreidae sp.",1
+"721","Twin Cays Mangrove","Mangrove","2015","Haemulon flavolineatum",16
+"722","Twin Cays Mangrove","Mangrove","2015","Haemulon plumierii",4
+"723","Twin Cays Mangrove","Mangrove","2015","Haemulon sciurus",4
+"724","Twin Cays Mangrove","Mangrove","2015","Haemulon sp.",9
+"725","Twin Cays Mangrove","Mangrove","2015","Lactophrys triqueter",1
+"726","Twin Cays Mangrove","Mangrove","2015","Lutjanus apodus",13
+"727","Twin Cays Mangrove","Mangrove","2015","Lutjanus griseus",26
+"728","Twin Cays Mangrove","Mangrove","2015","Lutjanus jocu",2
+"729","Twin Cays Mangrove","Mangrove","2015","Thalassoma bifasciatum",2
+"730","Twin Cays Mangrove","Mangrove","2016","Ablennes hians",10
+"731","Twin Cays Mangrove","Mangrove","2016","Abudefduf saxatilis",6
+"732","Twin Cays Mangrove","Mangrove","2016","Anisotremus virginicus",1
+"733","Twin Cays Mangrove","Mangrove","2016","Atherinid spp.",95
+"734","Twin Cays Mangrove","Mangrove","2016","Chaetodipterus faber",5
+"735","Twin Cays Mangrove","Mangrove","2016","Chaetodon capistratus",1
+"736","Twin Cays Mangrove","Mangrove","2016","Chromis multilineata",1
+"737","Twin Cays Mangrove","Mangrove","2016","Clupeid spp.",145
+"738","Twin Cays Mangrove","Mangrove","2016","Gerres cinereus",3
+"739","Twin Cays Mangrove","Mangrove","2016","Haemulon carbonarium",3
+"740","Twin Cays Mangrove","Mangrove","2016","Haemulon flavolineatum",2
+"741","Twin Cays Mangrove","Mangrove","2016","Haemulon sciurus",5
+"742","Twin Cays Mangrove","Mangrove","2016","Haemulon spp.",5
+"743","Twin Cays Mangrove","Mangrove","2016","Lutjanus apodus",8
+"744","Twin Cays Mangrove","Mangrove","2016","Lutjanus griseus",6
+"745","Twin Cays Mangrove","Mangrove","2016","Lutjanus jocu",3
+"746","Twin Cays Mangrove","Mangrove","2016","Scarus iseri",2
+"747","Twin Cays Mangrove","Mangrove","2016","Sparisoma aurofrenatum",3
+"748","Twin Cays Mangrove","Mangrove","2016","Strongylura notata",2
+"749","Twin Cays Mangrove","Mangrove","2016","Thalassoma bifasciatum",1
+"750","Twin Cays Mangrove","Mangrove","2017","Abudefduf saxatilis",5
+"751","Twin Cays Mangrove","Mangrove","2017","Anisotremus virginicus",4
+"752","Twin Cays Mangrove","Mangrove","2017","Antherinidae sp.",100
+"753","Twin Cays Mangrove","Mangrove","2017","Canthigaster rostrata",6
+"754","Twin Cays Mangrove","Mangrove","2017","Chaetodon capistratus",1
+"755","Twin Cays Mangrove","Mangrove","2017","Clupeid spp.",30
+"756","Twin Cays Mangrove","Mangrove","2017","Gerres cinereus",10
+"757","Twin Cays Mangrove","Mangrove","2017","Haemulon flavolineatum",4
+"758","Twin Cays Mangrove","Mangrove","2017","Haemulon sciurus",17
+"759","Twin Cays Mangrove","Mangrove","2017","Haemulon spp.",8
+"760","Twin Cays Mangrove","Mangrove","2017","Lutjanus apodus",4
+"761","Twin Cays Mangrove","Mangrove","2017","Lutjanus griseus",10
+"762","Twin Cays Mangrove","Mangrove","2017","Lutjanus jocu",1
+"763","Twin Cays Mangrove","Mangrove","2017","Pterois volitans",1
+"764","Twin Cays Mangrove","Mangrove","2017","Sphyraena barracuda",4
+"765","Twin Cays Mangrove","Mangrove","2017","Thalassoma bifasciatum",1
+"766","Twin Cays Mangrove","Mangrove","2017","Tylosurus crocodilus",2
+"767","Twin Cays Seagrass","Seagrass","2015","Cryptotomus roseus",1
+"768","Twin Cays Seagrass","Seagrass","2015","Haemulon sciurus",2
+"769","Twin Cays Seagrass","Seagrass","2015","Haemulon sp.",10
+"770","Twin Cays Seagrass","Seagrass","2015","Halichoeres bivittatus",1
+"771","Twin Cays Seagrass","Seagrass","2015","Lutjanus apodus",2
+"772","Twin Cays Seagrass","Seagrass","2015","Monacanthus ciliatus",1
+"773","Twin Cays Seagrass","Seagrass","2015","Scarus iseri",6
+"774","Twin Cays Seagrass","Seagrass","2015","Sparisoma radians",10
+"775","Twin Cays Seagrass","Seagrass","2016","Atherinid spp.",1004
+"776","Twin Cays Seagrass","Seagrass","2016","Haemulon flavolineatum",1
+"777","Twin Cays Seagrass","Seagrass","2016","Haemulon sciurus",7
+"778","Twin Cays Seagrass","Seagrass","2016","Haemulon spp.",9
+"779","Twin Cays Seagrass","Seagrass","2016","Halichoeres bivittatus",3
+"780","Twin Cays Seagrass","Seagrass","2016","Monacanthus ciliatus",1
+"781","Twin Cays Seagrass","Seagrass","2016","Scarus iseri",54
+"782","Twin Cays Seagrass","Seagrass","2016","Sparisoma radians",2
+"783","Twin Cays Seagrass","Seagrass","2017","Canthigaster rostrata",9
+"784","Twin Cays Seagrass","Seagrass","2017","Lutjanus griseus",2
