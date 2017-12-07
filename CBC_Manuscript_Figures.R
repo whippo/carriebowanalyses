@@ -841,7 +841,57 @@ rug.box <- ggplot(relief, aes(x=Site.Name, y=Relief..m., fill = Year)) +
   labs(x="", y="Rugosity (m)") 
 rug.box
 
+############### FIGURE 8
 
+# Figure 8A squidpops and fish abundance
+sp_abun <- ggplot(All_pairs, aes(y=Squidpops, x=Tot.log.abun)) + 
+  geom_point(size = 2, aes(color = Habitat.x)) +
+  geom_ribbon(stat = 'smooth', method = "lm", se = TRUE, alpha=0.05, aes(color = NULL)) +
+  geom_line(stat = 'smooth', method = lm) +
+  theme_minimal() +
+  labs(y="Total squidpops consumed", x="Log abundance of fish") +
+  habScale
+#sp_abun
+
+# Figure 8B squidpops and fish richness
+sp_rich <- ggplot(All_pairs, aes(y=Squidpops, x=Tot.rich)) + 
+  geom_point(size = 2, aes(color = Habitat.x)) +
+  geom_ribbon(stat = 'smooth', method = "lm", se = TRUE, alpha=0.05, aes(color = NULL)) +
+  geom_line(stat = 'smooth', method = lm) +
+  theme_minimal() +
+  labs(y="Total squidpops consumed", x="Fish species richness") +
+  habScale
+#sp_rich
+
+# Figure 8C algae and fish abundance
+alg_abun <- ggplot(All_pairs, aes(y=Tot.algae, x=Tot.log.abun)) + 
+  geom_point(size = 2, aes(color = Habitat.x)) +
+  geom_ribbon(stat = 'smooth', method = "lm", se = TRUE, alpha=0.05, aes(color = NULL)) +
+  geom_line(stat = 'smooth', method = lm) +
+  theme_minimal() +
+  labs(y="Total algae consumed", x="Log abundance of fish") +
+  habScale
+#alg_abun
+
+
+# Figure 8D algae and fish richness
+alg_rich <- ggplot(All_pairs, aes(y=Tot.algae, x=Tot.rich)) + 
+  geom_point(size = 2, aes(color = Habitat.x)) +
+  geom_ribbon(stat = 'smooth', method = "lm", se = TRUE, alpha=0.05, aes(color = NULL)) +
+  geom_line(stat = 'smooth', method = lm) +
+  theme_minimal() +
+  labs(y="Total algae consumed", x="Fish species richness") +
+  habScale
+#alg_rich
+
+Figure8 <- ggarrange(sp_abun, sp_rich, alg_abun, alg_rich, 
+                     labels = c("A","B","C","D"), 
+                     ncol = 2,
+                     nrow = 2,
+                     common.legend = TRUE, legend = "right")
+annotate_figure(Figure8, bottom = text_grob("Figure 8: here", size = 10))
+
+# best size: ~x
 
 #####
 #<<<<<<<<<<<<<<<<<<<<<<<<<<END OF SCRIPT>>>>>>>>>>>>>>>>>>>>>>>>#
