@@ -769,16 +769,18 @@ annotate_figure(Figure4, bottom = text_grob("Figure 4: Calcuated A) species rich
 
 # Figure 5A pairs analysis of all habitat types
 
-all_pairplot <- pairs.panels(All_pairs[5:15],bg=habcols[All_pairs$Habitat.x], scale = TRUE,
-             pch=21, ellipses = FALSE)
+all_pairplot <- pairs.panels(All_pairs[5:15],bg=habcols[All_pairs$Habitat.x], 
+                             scale = TRUE, pch=21, ellipses = FALSE)
+# best size: ~1150x850
 
 # Figure 5B pairs for reef only
 
-reef_pairplot <- pairs.panels(All_pairs[c(4:5, 7:8, 19:20, 29:30, 32:33, 38:39),c(5:16)], bg=habcols[All_pairs$Habitat.x], scale = FALSE,
-                              pch=21, ellipses = FALSE)
+reef_pairplot <- pairs.panels(All_pairs[c(4:5, 7:8, 19:20, 29:30, 32:33, 38:39),
+                                        c(5:16)], bg=habcols[All_pairs$Habitat.x],
+                              scale = FALSE, pch=21, ellipses = FALSE)
+# best size: ~1150x850
 
-Figure5 <- ggarrange(all_pairplot,
-                     ncol = 1, nrow = 1)
+Figure5 <- ggarrange(all_pairplot, reef_pairplot, ncol = 1, nrow = 2)
 annotate_figure(Figure5, bottom = text_grob("Figure 5: Pairs plot of stuff."))
 
 ############### FIGURE 6
@@ -838,8 +840,10 @@ rug.box <- ggplot(relief, aes(x=Site.Name, y=Relief..m., fill = Year)) +
   geom_boxplot(aes(fill = Year, group = interaction(Site.Name, Year))) + 
   scale_fill_viridis(discrete = TRUE, option = "viridis", begin = 0.3, end = 0.7) +
   theme_minimal() +
-  labs(x="", y="Rugosity (m)") 
+  labs(x="", y="Rugosity (m)", caption = "Figure 7: Mean rugosity of reef sites around Carrie Bow Cay, Belize by year.")
 rug.box
+
+# best size: ~800x550
 
 ############### FIGURE 8
 
@@ -889,9 +893,9 @@ Figure8 <- ggarrange(sp_abun, sp_rich, alg_abun, alg_rich,
                      ncol = 2,
                      nrow = 2,
                      common.legend = TRUE, legend = "right")
-annotate_figure(Figure8, bottom = text_grob("Figure 8: here", size = 10))
+annotate_figure(Figure8, bottom = text_grob("Figure 8: Relationship between squidpops consumed and A) log abundance of fish and B) fish species richness, and total macrophytes \n consumed and C) log abundance of fish and D) fish species richness across 5 habitat types and 3 years around Carrie Bow Cay, Belize.", size = 10))
 
-# best size: ~x
+# best size: ~850x700
 
 #####
 #<<<<<<<<<<<<<<<<<<<<<<<<<<END OF SCRIPT>>>>>>>>>>>>>>>>>>>>>>>>#
