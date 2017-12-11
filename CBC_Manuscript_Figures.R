@@ -24,12 +24,9 @@
 # Associated Scripts:
 # RLS_M1M2_v1.R 
 
-# TO DO
-
 ###################################################################################
 # TABLE OF CONTENTS                                                               #
 #                                                                                 #
-# RECENT CHANGES TO SCRIPT                                                        #
 # LOAD PACKAGES                                                                   #
 # READ IN AND PREPARE DATA                                                        #
 # RICHNESS & ABUNDANCE                                                            #
@@ -41,17 +38,6 @@
 # FACETED FIGURES                                                                 #
 #                                                                                 #
 ###################################################################################
-
-###################################################################################
-# RECENT CHANGES TO SCRIPT                                                        #
-###################################################################################
-
-# Script created from 20171121_CBC_Manuscript_Figures.R and migrated to Git
-# 20171206 Added benthic photo MDS analysis
-# 20171121 Figures 3-4 created, habitats reordered, saved from 
-#          201171117_CBC_Manuscript_Figures.R
-# 20171120 Figure 2 created, new colors added, updated data used
-# 20171117 Script created from RLS_subsampled_CBC_analyses_v2.R by Ross Whippo
 
 ###################################################################################
 # LOAD PACKAGES                                                                   #
@@ -473,6 +459,9 @@ library(plyr)
 
 # hulls by year
 chulls_ben_year <- ddply(plot_data_ben, .(Year), function(df) df[chull(df$MDS1, df$MDS2), ])
+
+# hulls by site
+chulls_ben_site <- ddply(plot_data_ben, .(Site.Name), function(df) df[chull(df$MDS1, df$MDS2), ])
 detach(package:plyr)
 
 ###################################################################################
@@ -785,14 +774,23 @@ annotate_figure(Figure5, bottom = text_grob("Figure 5: Pairs plot of stuff."))
 
 ############### FIGURE 6
 
-# Figure 6A Benthic MDS
-benthic_MDS <- ggplot(plot_data_ben, aes(x=MDS1, y=MDS2, pch = Habitat, 
+# Figure 6A Benthic MDS Year
+benthic_MDS_Year <- ggplot(plot_data_ben, aes(x=MDS1, y=MDS2, pch = Habitat, 
                                          color = Year)) + 
   scale_color_viridis(discrete = TRUE, option = "viridis", begin = 0.3, end = 0.7) +
   theme_minimal() + 
   geom_point(size = 4) + 
   geom_polygon(data=chulls_ben_year, aes(x=MDS1, y=MDS2, group=Year), fill=NA) 
-#benthic_MDS
+#benthic_MDS_Year
+
+# Figure 6x Benthic MDS Site (sites all overlap)
+#benthic_MDS_Site <- ggplot(plot_data_ben, aes(x=MDS1, y=MDS2, pch = Year, 
+#                                         color = Site.Name)) + 
+#  scale_color_viridis(discrete = TRUE, option = "viridis", begin = 0.1, end = 0.9) +
+#  theme_minimal() + 
+#  geom_point(size = 4) + 
+#  geom_polygon(data=chulls_ben_site, aes(x=MDS1, y=MDS2, group=Site.Name), fill=NA) 
+#benthic_MDS_Site
 
 # Figure 6B Unoccupied Space
 benspace.box <- ggplot(space_benthic, aes(x = Site.Name, y = 1-(occupied/points), fill = Year)) + 
@@ -824,7 +822,7 @@ bendiv.box <- ggplot(benthic_rich, aes(x=Site.Name, y=simpson, fill = Year)) +
   labs(x="", y="Simpson Value") 
 #bendiv.box
 
-Figure6 <- ggarrange(benthic_MDS, ggarrange(benspace.box, benalgae.box, bendiv.box, 
+Figure6 <- ggarrange(benthic_MDS_Year, ggarrange(benspace.box, benalgae.box, bendiv.box, 
                      labels = c("B", "C", "D"),
                      nrow = 3, legend = "none"), labels = "A", ncol = 2,
                      common.legend = TRUE, legend = "right")
@@ -897,8 +895,8 @@ annotate_figure(Figure8, bottom = text_grob("Figure 8: Relationship between squi
 
 # best size: ~850x700
 
-#####
-#<<<<<<<<<<<<<<<<<<<<<<<<<<END OF SCRIPT>>>>>>>>>>>>>>>>>>>>>>>>#
-
+###################################################################################
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<END OF SCRIPT>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#
+###################################################################################
 
 
