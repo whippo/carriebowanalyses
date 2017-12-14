@@ -1,10 +1,10 @@
 ###################################################################################
 #                                                                                ##
 # Carrie Bow Cay MarineGEO Manuscript Figures                                    ##
-# Data are current as of 20171122                                                ##
+# Data are current as of 20171214                                                ##
 # Data source: MarineGEO - Tennenbaum Marine Observatories Network - Smithsonian ##
 # R code prepared by Ross Whippo                                                 ##
-# Last updated 20171122                                                          ##
+# Last updated 20171214                                                          ##
 #                                                                                ##
 ###################################################################################
 
@@ -31,6 +31,7 @@
 # READ IN AND PREPARE DATA                                                        #
 # RICHNESS & ABUNDANCE                                                            #
 # TAXONOMIC DIVERSITY                                                             #
+# FUNCTIONAL DIVERSITY                                                            #
 # COMMUNITY COMPOSITION                                                           #
 # TIME SERIES                                                                     #
 # PAIRS DATA                                                                      #
@@ -80,6 +81,9 @@ levels(characters$Trophic.group)[levels(characters$Trophic.group)=="higher carni
 levels(characters$Trophic.group)[levels(characters$Trophic.group)=="omnivore"] <- "Omnivore"
 levels(characters$Trophic.group)[levels(characters$Trophic.group)=="suspension feeders"] <- "Suspension feeders"
 levels(characters$Trophic.group)
+
+# import bins for fish sizes (from German Soler)
+Lbins <- read.csv("lengthbins_soler.csv")
 
 ############### SQUIDPOPS
 
@@ -309,6 +313,20 @@ herb.pool <- Herb.spread[,4:27] %>%
 
 # add simpson diversity values in column
 benthic_rich$simpson <- diversity(benthic_rich[,5:55], index = "simpson")
+
+###################################################################################
+# FUNCTIONAL DIVERSITY                                                            #
+###################################################################################
+
+# match characters to RLS data
+names(characters)[names(characters)=="CURRENT_TAXONOMIC_NAME"] <- "Species"
+RLS_Lmax <- left_join(RLS_subsample, characters, by="Species")
+
+# identify species not in character list
+unique(RLS_subsample$Species[!(RLS_subsample$Species %in% characters$Species)])
+
+# create MaxLength bin column
+RLS_Lmax$Lbin <- with(RLS_Lmax, ifelse(MaxLength<7.5, "<7.5", ifelse(MaxLength>30, ">30", ifelse(MaxLength >= 7.5 & MaxLength<=30, "7.5-30", MaxLength))))
 
 ###################################################################################
 # COMMUNITY COMPOSITION                                                           #
@@ -645,7 +663,7 @@ tax_MDS <- ggplot(plot_data_tax, aes(x=MDS1, y=MDS2, pch = Year,
   geom_polygon(data=chulls_tax, aes(x=MDS1, y=MDS2, group=Habitat), fill=NA) +
   habScale + 
   rremove("legend")
-#tax_MDS
+tax_MDS
 
 # 2D Trophic nMDS
 tro_MDS <- ggplot(plot_data_tro, aes(x=MDS1, y=MDS2, pch = Year, 
@@ -899,4 +917,11 @@ annotate_figure(Figure8, bottom = text_grob("Figure 8: Relationship between squi
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<END OF SCRIPT>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#
 ###################################################################################
 
+vec_comp <- envfit(RLS_mds$points, RLS_mat_run, perm=1000)
+vec_comp_df <- as.data.frame(vec_comp$vectors$arrows*sqrt(vec_comp$vectors$r))
+vec_comp_df$group <- rownames(vec_comp_df)
 
+geom_segment(data = vec_comp_df, aes(x = 0, xend = MDS1, y = 0, yend = MDS2),
+             arrow = arrow(length = unit(0.5, "cm")), colour = "grey", inherit.aes = FALSE) +
+  geom_text(data = vec_comp_df, aes(x = MDS1, y = MDS2, label = group), size = 5) +
+  #  coord_fixed() +
