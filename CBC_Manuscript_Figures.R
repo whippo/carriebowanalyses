@@ -328,6 +328,36 @@ unique(RLS_subsample$Species[!(RLS_subsample$Species %in% characters$Species)])
 # create MaxLength bin column
 RLS_Lmax$Lbin <- with(RLS_Lmax, ifelse(MaxLength<7.5, "<7.5", ifelse(MaxLength>30, ">30", ifelse(MaxLength >= 7.5 & MaxLength<=30, "7.5-30", MaxLength))))
 
+RLS_Lmax$Lbin <- as.factor(RLS_Lmax$Lbin)
+
+
+############NEED TO FIX THIS SECTION
+# sum functional groups for each site
+Lmax_anal <- RLS_Lmax %>%
+  group_by(Site.Name, Habitat.x, Lbin) %>%
+  summarise(sum(sum))
+
+# change column name
+names(Lmax_anal)[names(Lmax_anal)=="sum(sum)"] <- "total"
+
+# spread RLS data into community matrix
+Lmax_full_mat <- Lmax_anal %>%
+  spread(Lbin, total, fill = 0)
+Lmax_mat <- Lmax_full_mat[,c(3:5)]
+
+# run matrix 
+Lmax_mat_run <- Lmax_mat[,3:5]
+
+# MDS of community
+RLS_mds <- metaMDS(RLS_mat_run)
+RLS_mds_points <- RLS_mds$points
+RLS_mds_points <- data.frame(RLS_mds_points)
+plot_data_tax <- data.frame(RLS_mds_points, RLS_mat[,1:3])
+library(plyr)
+chulls_tax <- ddply(plot_data_tax, .(Habitat), function(df) df[chull(df$MDS1, df$MDS2), ])
+detach(package:plyr)
+##################END OF SECTION TO FIX
+
 ###################################################################################
 # COMMUNITY COMPOSITION                                                           #
 ###################################################################################
