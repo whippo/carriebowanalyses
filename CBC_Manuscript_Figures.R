@@ -52,13 +52,14 @@ library(vegan) # diversity and MDS plots
 library(splitstackshape) # data manipulation
 library(viridis) # color palette
 library(psych) # pairs analysis
+library(grid) # nMDS vectors
 
 ###################################################################################
 # READ IN AND PREPARE DATA                                                        #
 ###################################################################################
 
 # Change working directory
-# setwd("~/Documents/Git/Carrie Bow Analyses")
+setwd("~/Dropbox (Personal)/Datasets/CBC_MS_2018")
 
 ############### RLS
 
@@ -68,12 +69,18 @@ RLS_subsample$Year <- as.factor(RLS_subsample$Year)
 RLS_subsample$Habitat <- factor(RLS_subsample$Habitat, levels = c("Fore Reef", "Patch Reef", "Mangrove", "Seagrass", "Sand"))
 glimpse(RLS_subsample)
 
+
+
+
+
+
+
+############# SKIP THIS SECTION IF BIOMASS FILE ALREADY AVAILABLE #######
+
 # Import full survey for method 1 biomass calcs
 RLS_1 <- read.csv("CBCRLS_CORE.csv")
 RLS_1 <- RLS_1 %>%
   filter(Method == "1")
-
-
 
 # Clean up data
 
@@ -115,10 +122,13 @@ RLS_1 <- RLS_1 %>%
   filter(Species != "Strombus gigas") %>%
   filter(Species != "Sepioteuthis sepioidea")
 
+# replace NAs with 0 
+RLS_1[is.na(RLS_1)] <- 0
+
 ############### BIOMASS COEFFICIENTS
 
 # Load coefficients
-coef <- read.csv("20160710_RLS_biomass_coefs.csv")
+coef <- read.csv("20180116_RLS_biomass_coefs.csv")
 
 # rename species column to match RLS column
 names(coef)[names(coef)=="SPECIES_NAME"] <- "Species"
@@ -133,7 +143,21 @@ RLS_biom <- full_join(RLS_1, coef_small, by="Species")
 # identify species not in character list all M1M2
 unique(RLS_biom$Species[!(RLS_biom$Species %in% coef$Species)])
 
-write.csv(RLS_biom, "Bocas_RLS_fish-biomass_full.csv")
+write.csv(RLS_biom, "CBC_RLS_fish-biomass_full.csv")
+
+### CALCULATIONS FOR BIOMASS MADE IN EXCEL AND RELOADED INTO R
+
+################ SKIP TO HERE ###################
+
+
+
+
+
+
+
+
+
+biomass <- read.csv("CBC_RLS_fish-biomass_full.csv")
 
 
 ############### FISH CHARACTERS
@@ -528,6 +552,9 @@ RLS_mds <- metaMDS(RLS_mat_run)
 RLS_mds_points <- RLS_mds$points
 RLS_mds_points <- data.frame(RLS_mds_points)
 plot_data_tax <- data.frame(RLS_mds_points, RLS_mat[,1:3])
+vec_sp_tax <- envfit(RLS_mds$points, RLS_mat_run, perm = 1000)
+vec_sp_tax_df <- as.data.frame(vec_sp_tax$vectors$arrows*sqrt(vec_sp_tax$vectors$r))
+vec_sp_tax_df$species <- rownames(vec_sp_tax_df)
 library(plyr)
 chulls_tax <- ddply(plot_data_tax, .(Habitat), function(df) df[chull(df$MDS1, df$MDS2), ])
 detach(package:plyr)
@@ -552,6 +579,9 @@ RLS_mds <- metaMDS(RLS_mat_run)
 RLS_mds_points <- RLS_mds$points
 RLS_mds_points <- data.frame(RLS_mds_points)
 plot_data_tro <- data.frame(RLS_mds_points, RLS_mat[,1:3])
+vec_sp_tro <- envfit(RLS_mds$points, RLS_mat_run, perm = 1000)
+vec_sp_tro_df <- as.data.frame(vec_sp_tro$vectors$arrows*sqrt(vec_sp_tro$vectors$r))
+vec_sp_tro_df$species <- rownames(vec_sp_tro_df)
 library(plyr)
 chulls_tro <- ddply(plot_data_tro, .(Habitat), function(df) df[chull(df$MDS1, df$MDS2), ])
 detach(package:plyr)
@@ -758,7 +788,12 @@ tax_MDS <- ggplot(plot_data_tax, aes(x=MDS1, y=MDS2, pch = Year,
   geom_point(size = 4) +
   geom_polygon(data=chulls_tax, aes(x=MDS1, y=MDS2, group=Habitat), fill=NA) +
   habScale + 
-  rremove("legend")
+  geom_segment(data=vec_sp_tax_df, aes(x=0,xend=MDS1,y=0,yend=MDS2),
+               arrow = arrow(length = unit(0.5, "cm")),colour="grey") + 
+  geom_text(data=vec_sp_tax_df,aes(x=MDS1,y=MDS2,label=species),size=5) +
+  coord_fixed() +
+  rremove("legend") 
+  
 tax_MDS
 
 # 2D Trophic nMDS
