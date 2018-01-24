@@ -4,7 +4,7 @@
 # Data are current as of 20171214                                                ##
 # Data source: MarineGEO - Tennenbaum Marine Observatories Network - Smithsonian ##
 # R code prepared by Ross Whippo                                                 ##
-# Last updated 20171214                                                          ##
+# Last updated 20180124                                                          ##
 #                                                                                ##
 ###################################################################################
 
@@ -20,6 +20,8 @@
 # 20171120_weedpops.csv
 # COPY_20171206_CBC-Benthic-photo-annotations.csv
 # 20170209_CBC_Relief.csv
+# 20180124_CBC_largefish.csv
+# 20180124_CBC_biom.csv
 
 # Associated Scripts:
 # RLS_M1M2_v1.R 
@@ -68,6 +70,9 @@ RLS_subsample <- read.csv("20171120_CBC_RLS_subsampled.csv")
 RLS_subsample$Year <- as.factor(RLS_subsample$Year)
 RLS_subsample$Habitat <- factor(RLS_subsample$Habitat, levels = c("Fore Reef", "Patch Reef", "Mangrove", "Seagrass", "Sand"))
 glimpse(RLS_subsample)
+
+# Import large fish dataset
+RLS_large <- read.csv("20180124_CBC_largefish.csv")
 
 
 
@@ -145,7 +150,8 @@ unique(RLS_biom$Species[!(RLS_biom$Species %in% coef$Species)])
 
 write.csv(RLS_biom, "CBC_RLS_fish-biomass_full.csv")
 
-### CALCULATIONS FOR BIOMASS MADE IN EXCEL AND RELOADED INTO R
+### CALCULATIONS FOR BIOMASS MADE IN EXCEL AND RELOADED INTO R as 
+### "20180124_CBC_biom.csv"
 
 ################ SKIP TO HERE ###################
 
@@ -154,10 +160,7 @@ write.csv(RLS_biom, "CBC_RLS_fish-biomass_full.csv")
 
 
 
-
-
-
-biomass <- read.csv("CBC_RLS_fish-biomass_full.csv")
+biomass <- read.csv("20180124_CBC_biom.csv")
 
 
 ############### FISH CHARACTERS
@@ -308,6 +311,15 @@ Abundance$Habitat <- factor(Abundance$Habitat, levels = c("Fore Reef", "Patch Re
 
 Abundance$Richness <- pool$Species
 names(Abundance)[names(Abundance)=="log10(sum(sum))"] <- "Abun"
+
+############### LARGE FISH ABUNDANCE (>20cm)
+
+RLS_large <- read.csv("20180124_CBC_largefish.csv")
+
+RLS_loglarge <- RLS_large %>%
+  group_by(Site.Name, Year) %>%
+  summarise(log10(1+ sum(Total.Abundance)))
+names(RLS_loglarge)[names(RLS_loglarge)=="log10(1+ sum(Total.Abundance))"] <- "Log.Large.Abun"
 
 ###################################################################################
 # TAXONOMIC DIVERSITY                                                             #
@@ -1047,6 +1059,11 @@ annotate_figure(Figure8, bottom = text_grob("Figure 8: Relationship between squi
 #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<END OF SCRIPT>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#
 ###################################################################################
 
+
+
+###  Working bits and bobs
+
+# MDS vectors
 vec_comp <- envfit(RLS_mds$points, RLS_mat_run, perm=1000)
 vec_comp_df <- as.data.frame(vec_comp$vectors$arrows*sqrt(vec_comp$vectors$r))
 vec_comp_df$group <- rownames(vec_comp_df)

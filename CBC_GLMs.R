@@ -18,7 +18,7 @@
 # Traits_all-species_edit.csv
 # 20171122_squidpops_CBC.csv
 # 20171120_weedpops.csv
-# CBC_RLS_fish-biomass_full.csv
+# 20180124_CBC_biom.csv
 
 # Associated Scripts:
 # CBC_Manuscript_Figures.R
@@ -32,7 +32,7 @@
 # RECENT CHANGES TO SCRIPT                                                        #
 # LOAD PACKAGES                                                                   #
 # READ IN AND PREPARE DATA                                                        #
-# SUMMARY STATS                                                                   #    #                                                                                 #
+# SUMMARY STATS                                                                   # #                                                                                 #
 ###################################################################################
 
 ###################################################################################
@@ -54,8 +54,8 @@ library(splitstackshape) # data manipulation
 library(viridis) # color palette
 library(psych) # pairs analysis
 library(lme4) # glm analyses
-library(MASS) # glm analyses
 library(grid) # nMDS vectors
+library(sjPlot) # quick summaries of models
 
 ###################################################################################
 # READ IN AND PREPARE DATA                                                        #
@@ -76,7 +76,7 @@ glimpse(RLS_subsample)
 
 # Import RLS biomass data
 
-RLS_biom <- read.csv("CBC_RLS_fish-biomass_full.csv")
+RLS_biom <- read.csv("20180124_CBC_biom.csv")
 
 
 
@@ -156,6 +156,9 @@ GLM_data <- left_join(biom_summary, squidpop_summ, by = "Site.Time")
 GLM_data <- left_join(GLM_data, RLS_summ, by = "Site.Time")
 GLM_data <- left_join(GLM_data, weed_summ, by = "Site.Time")
 
+# make year a factor
+GLM_data$Year <- as.factor(GLM_data$Year)
+
 
 ###################################################################################
 # SUMMARY STATS                                                                   #
@@ -175,20 +178,30 @@ plot(Weed.Detached/Weed.Recovered ~ Log.Abundance, data = GLM_data)
 plot(Weed.Detached/Weed.Recovered ~ Log.Biomass, data = GLM_data)
 
 
+############### NORMALITY TESTS
+
+
+
 
 ############### GLM
 
 # squidpops
-SP_GLM <- glmer(formula = cbind(Detachment.1.hour, Number.Deployed - Detachment.1.hour) ~ Raw.Richness + Log.Abundance + Log.Biomass + Habitat + (1|Year), family = binomial(logit), data = GLM_data)
+SP_GLM <- glmer(formula = cbind(Detachment.1.hour, Number.Deployed - Detachment.1.hour) ~ Raw.Richness + Log.Abundance + Log.Biomass + Habitat + (1|Year) + (1|Site.Name), family = binomial(logit), data = GLM_data)
 
 summary(SP_GLM)
 
 # weedpops
-WP_GLM <- glmer(formula = cbind(Weed.Detached, Weed.Recovered - Weed.Detached) ~ Raw.Richness + Log.Abundance + Log.Biomass + Habitat + (Year|Site.Name), family = binomial(logit), data = GLM_data)
+WP_GLM <- glmer(formula = cbind(Weed.Detached, Weed.Recovered - Weed.Detached) ~ Raw.Richness + Log.Abundance + Log.Biomass + Habitat + (1|Year), family = binomial(logit), data = GLM_data)
 
 summary(WP_GLM)
 
+# change through time
 
+BIOM_GLM <- lmer(formula = Log.Biomass ~ Habitat * Year + (1|Site.Name), data = GLM_data)
+sjt.lmer(BIOM_GLM)
+
+ ABUN_GLM <- lmer(formula = Log.Abundance ~ Habitat * Year + (1|Site.Name), data = GLM_data)
+sjt.lmer(ABUN_GLM)
 
 #####
 #<<<<<<<<<<<<<<<<<<<<<<<<<<END OF SCRIPT>>>>>>>>>>>>>>>>>>>>>>>>#
