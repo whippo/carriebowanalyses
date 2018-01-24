@@ -788,12 +788,11 @@ tax_MDS <- ggplot(plot_data_tax, aes(x=MDS1, y=MDS2, pch = Year,
   geom_point(size = 4) +
   geom_polygon(data=chulls_tax, aes(x=MDS1, y=MDS2, group=Habitat), fill=NA) +
   habScale + 
-  geom_segment(data=vec_sp_tax_df, aes(x=0,xend=MDS1,y=0,yend=MDS2),
-               arrow = arrow(length = unit(0.5, "cm")),colour="grey") + 
-  geom_text(data=vec_sp_tax_df,aes(x=MDS1,y=MDS2,label=species),size=5) +
-  coord_fixed() +
+  #geom_segment(data=vec_sp_tax_df, aes(x=0,xend=MDS1,y=0,yend=MDS2),
+  #             arrow = arrow(length = unit(0.5, "cm")),colour="grey") + 
+  #geom_text(data=vec_sp_tax_df,aes(x=MDS1,y=MDS2,label=species),size=5) +
+  #coord_fixed() +
   rremove("legend") 
-  
 tax_MDS
 
 # 2D Trophic nMDS
@@ -803,7 +802,7 @@ tro_MDS <- ggplot(plot_data_tro, aes(x=MDS1, y=MDS2, pch = Year,
   geom_point(size = 4) + 
   geom_polygon(data=chulls_tro, aes(x=MDS1, y=MDS2, group=Habitat), fill=NA) +
   habScale
-#tro_MDS
+tro_MDS
 
 Figure2 <- ggarrange(fam_plot, troph_plot, tax_MDS, tro_MDS, 
                      labels = c("A", "B", "C", "D"),
