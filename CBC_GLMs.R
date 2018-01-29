@@ -58,6 +58,7 @@ library(sjPlot) # quick summaries of models
 library(devtools)
 library(piecewiseSEM) # computing pseudo-r for glms
 library(DHARMa) # for residual diagnostics of glms (normality of residuals)
+library(car) # test colinearity in GLM
 
 ###################################################################################
 # READ IN AND PREPARE DATA                                                        #
@@ -218,7 +219,28 @@ plot(Weed.Detached/Weed.Recovered ~ Log.Abundance, data = GLM_data)
 plot(Weed.Detached/Weed.Recovered ~ Log.Biomass, data = GLM_data)
 
 
-############### NORMALITY TESTS
+############### vif.mer function
+
+# find colinearity among variables
+
+vif.mer <- function (fit) {
+  ## adapted from rms::vif
+  
+  v <- vcov(fit)
+  nam <- names(fixef(fit))
+  
+  ## exclude intercepts
+  ns <- sum(1 * (nam == "Intercept" | nam == "(Intercept)"))
+  if (ns > 0) {
+    v <- v[-(1:ns), -(1:ns), drop = FALSE]
+    nam <- nam[-(1:ns)]
+  }
+  
+  d <- diag(v)^0.5
+  v <- diag(solve(v/(d %o% d)))
+  names(v) <- nam
+  v
+}
 
 
 
@@ -250,7 +272,7 @@ plot(Weed.Detached/Weed.Recovered ~ Log.Biomass, data = GLM_data)
 
 # squidpops glm, binomial model tested against fish metrics and habitat type, with 
 # year and site as random variables. 
-SP_GLM <- glmer(formula = Squidpop.Detached ~ Raw.Richness + Log.Abundance + Log.Biomass + Habitat + (1|Site.Name/Year), family = binomial(logit), data = GLM_data)
+SP_GLM <- glmer(formula = Squidpop.Detached ~ Raw.Richness + Log.Biomass + Log.Abundance  + Habitat + (1|Site.Name/Year), family = binomial(logit), data = GLM_data)
 
 summary(SP_GLM)
 
@@ -264,6 +286,21 @@ simulationOutput <- simulateResiduals(fittedModel = SP_GLM, n = 250)
   
   plotSimulatedResiduals(simulationOutput = simulationOutput)
 
+# run colinearity analysis for factors in analaysis (vif.mer function above)
+vif.mer(SP_GLM)
+  
+# plot factors against each other to look for relationships
+plot(Log.Biomass ~ Log.Abundance, data = GLM_data)
+plot(Log.Biomass ~ Raw.Richness, data = GLM_data)
+plot(Log.Abundance ~ Raw.Richness, data = GLM_data)
+
+# lm of correlations
+mod_bio_abund <- lm(Log.Biomass ~ Log.Abundance, data = GLM_data)
+summary(mod_bio_abund)
+mod_bio_rich <- lm(Log.Biomass ~ Raw.Richness, data = GLM_data)
+summary(mod_bio_rich)
+mod_abund_rich <- lm(Log.Abundance ~ Raw.Richness, data = GLM_data)
+summary(mod_abund_rich)
 
 # weedpops
 WP_GLM <- glmer(formula = cbind(Weed.Detached, Weed.Recovered - Weed.Detached) ~ Raw.Richness + Log.Abundance + Log.Biomass + Habitat + (1|Year), family = binomial(logit), data = GLM_data)
