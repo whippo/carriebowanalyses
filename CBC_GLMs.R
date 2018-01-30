@@ -397,6 +397,37 @@ sjt.lmer(ABUN_GLM)
 
 ####### SCRATCH PAD
 
+SP_GLM_habrand_curve <- glm(formula = Squidpop.Detached ~ Raw.Richness, family = binomial(logit), data = GLM_data_SP)
+
+plot(Squidpop.Detached ~ Raw.Richness, data = GLM_data_SP)
+
+curve(predict(SP_GLM_habrand_curve,data.frame(Raw.Richness=x),type="resp"),add=TRUE) 
+
+# obtaining pseudo-r values for the model
+rsquared(SP_GLM_habrand)
+
+# run DHARMa simulation for residuals (testing normality)
+simulationOutput <- simulateResiduals(fittedModel = SP_GLM_habrand, n = 250)
+
+# visualize the output
+
+plotSimulatedResiduals(simulationOutput = simulationOutput)
+
+# run colinearity analysis for factors in analaysis (vif.mer function above)
+vif.mer(SP_GLM_habrand)
+
+
+SP_GLM_habrand <- glmer(formula = Squidpop.Detached ~ Raw.Richness + Log.Biomass + Log.Abundance + Large.Log + (1 | Site.Name/Habitat / Year), family = binomial(logit), data = GLM_data_SP)
+sjt.glmer(SP_GLM_habrand)
+summary(SP_GLM)
+
+
+
+
+
+
+
+
 ## 1. center and scale predictors:
 ss.SP <- transform(GLM_data_SP, Log.Biomass = scale(Log.Biomass), Raw.Richness = scale(Raw.Richness), Log.Abundance = scale(Log.Abundance), Large.Log = scale(Large.Log))
 SP_GLM_scaled <- update(SP_GLM, data = ss.SP)
