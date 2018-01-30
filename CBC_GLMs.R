@@ -213,10 +213,10 @@ squidpop_summ <- squidpops.expanded %>%
 names(squidpop_summ)[names(squidpop_summ) == "failure"] <- "Squidpop.Detached"
 
 # create site/time column for weedpop data joining and summarise
-weed_summ <- weedpops.expanded %>%
+weedpop_summ <- weedpops.expanded %>%
   select(site, year, failure) %>%
   unite(Site.Time, site, year, sep = "_", remove = TRUE)
-names(weed_summ)[names(weed_summ) == "failure"] <- "Weedpop.Detached"
+names(weedpop_summ)[names(weedpop_summ) == "failure"] <- "Weedpop.Detached"
 
 # create site/time column for RLS diversity data
 RLS_summ <- RLS_subsample
@@ -230,15 +230,22 @@ names(RLS_summ)[names(RLS_summ) == "sum(count)"] <- "Raw.Richness"
 names(RLS_summ)[names(RLS_summ) == "sum(sum)"] <- "Fish.Abundance"
 RLS_summ$Log.Abundance <- log10(RLS_summ$Fish.Abundance)
 
-GLM_data <- left_join(biom_summary, squidpop_summ, by = "Site.Time")
-GLM_data <- left_join(GLM_data, RLS_summ, by = "Site.Time")
-GLM_data <- left_join(GLM_data, RLS_large_summ, by = "Site.Time")
-
-# need to separate weedpop data, if is response = binary, if factor = sum
-GLM_data <- left_join(GLM_data, weed_summ, by = "Site.Time")
+# Join all for squidpop analysis
+GLM_data_SP <- left_join(biom_summary, squidpop_summ, by = "Site.Time")
+GLM_data_SP <- left_join(GLM_data_SP, RLS_summ, by = "Site.Time")
+GLM_data_SP <- left_join(GLM_data_SP, RLS_large_summ, by = "Site.Time")
 
 # make year a factor
-GLM_data$Year <- as.factor(GLM_data$Year)
+GLM_data_SP$Year <- as.factor(GLM_data_SP$Year)
+
+# Join all for weedpop analysis
+GLM_data_WP <- left_join(biom_summary, weedpop_summ, by = "Site.Time")
+GLM_data_WP <- left_join(GLM_data_WP, RLS_summ, by = "Site.Time")
+GLM_data_WP <- left_join(GLM_data_WP, RLS_large_summ, by = "Site.Time")
+
+# make year a factor
+GLM_data_WP$Year <- as.factor(GLM_data_WP$Year) 
+
 
 
 
@@ -251,9 +258,9 @@ GLM_data$Year <- as.factor(GLM_data$Year)
 
 
 # squidpops
-plot(Squidpop.Detached ~ Raw.Richness, data = GLM_data)
-plot(Squidpop.Detached ~ Log.Abundance, data = GLM_data)
-plot(Squidpop.Detached ~ Log.Biomass, data = GLM_data)
+plot(Squidpop.Detached ~ Raw.Richness, data = GLM_data_SP)
+plot(Squidpop.Detached ~ Log.Abundance, data = GLM_data_SP)
+plot(Squidpop.Detached ~ Log.Biomass, data = GLM_data_SP)
 
 # weedpops NEED TO UPDATE TO BINOMIAL
 plot(Weed.Detached / Weed.Recovered ~ Raw.Richness, data = GLM_data)
@@ -312,9 +319,13 @@ vif.mer <- function(fit) {
 # expand.grid <- create 0 and 1 from proportions?
 
 
+
+
+
 # squidpops glm, binomial model tested against fish metrics and habitat type, with
 # year and site as random variables.
-SP_GLM <- glmer(formula = Squidpop.Detached ~ Raw.Richness + Log.Biomass + Log.Abundance + Large.Log + Habitat + (1 | Site.Name / Year), family = binomial(logit), data = GLM_data)
+SP_GLM <- glmer(formula = Squidpop.Detached ~ Raw.Richness + Log.Biomass + Log.Abundance + Large.Log + Habitat + (1 | Site.Name / Year), family = binomial(logit), data = GLM_data_SP)
+sjt.glmer(SP_GLM)
 summary(SP_GLM)
 
 # obtaining pseudo-r values for the model
@@ -346,10 +357,28 @@ summary(mod_bio_rich)
 mod_abund_rich <- lm(Log.Abundance ~ Raw.Richness, data = GLM_data)
 summary(mod_abund_rich)
 
-# weedpops
-WP_GLM <- glmer(formula = cbind(Weed.Detached, Weed.Recovered - Weed.Detached) ~ Raw.Richness + Log.Abundance + Log.Biomass + Habitat + (1 | Year), family = binomial(logit), data = GLM_data)
 
+
+
+
+# weedpops glm, binomial model tested against fish metrics and habitat type, with
+# year and site as random variables.
+WP_GLM <- glmer(formula = Weedpop.Detached ~ Raw.Richness + Log.Biomass + Log.Abundance + Large.Log + Habitat + (1 | Site.Name / Year), family = binomial(logit), data = GLM_data_WP)
+sjt.glmer(WP_GLM)
 summary(WP_GLM)
+
+# obtaining pseudo-r values for the model
+rsquared(WP_GLM)
+
+# run DHARMa simulation for residuals (testing normality)
+simulationOutput <- simulateResiduals(fittedModel = WP_GLM, n = 250)
+
+# visualize the output
+
+plotSimulatedResiduals(simulationOutput = simulationOutput)
+
+# run colinearity analysis for factors in analaysis (vif.mer function above)
+vif.mer(WP_GLM)
 
 
 
@@ -368,5 +397,10 @@ sjt.lmer(ABUN_GLM)
 
 ####### SCRATCH PAD
 
-ggplot(RLS_large, aes(x = Habitat, y = Total.Abundance)) +
-  geom_col()
+## 1. center and scale predictors:
+ss.SP <- transform(GLM_data_SP, Log.Biomass = scale(Log.Biomass), Raw.Richness = scale(Raw.Richness), Log.Abundance = scale(Log.Abundance), Large.Log = scale(Large.Log))
+SP_GLM_scaled <- update(SP_GLM, data = ss.SP)
+
+
+diag.vals <- getME(WP_GLM, "theta")[getME(WP_GLM, "lower") == 0]
+any(diag.vals < 1e-6) # FALSE
