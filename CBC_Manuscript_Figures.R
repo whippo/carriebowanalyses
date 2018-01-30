@@ -74,92 +74,7 @@ glimpse(RLS_subsample)
 # Import large fish dataset
 RLS_large <- read.csv("20180124_CBC_largefish.csv")
 
-
-
-
-
-
-
-############# SKIP THIS SECTION IF BIOMASS FILE ALREADY AVAILABLE #######
-
-# Import full survey for method 1 biomass calcs
-RLS_1 <- read.csv("CBCRLS_CORE.csv")
-RLS_1 <- RLS_1 %>%
-  filter(Method == "1")
-
-# Clean up data
-
-# Create unique ID for each survey
-RLS_1 <- RLS_1 %>%
-  unite_("event", c("Site.Name", "Date"), sep = "_", remove = FALSE)
-
-# make unique ID a factor
-RLS_1$event <- as.factor(RLS_1$event)
-
-#remove method 1 with no given abundance
-RLS_1 <- RLS_1 %>%
-  subset(Total !="0")
-
-# fix incorrect taxa
-levels(RLS_1$Species)[levels(RLS_1$Species)=="Sphoeroides spenglerii"] <- "Sphoeroides spengleri"
-levels(RLS_1$Species)[levels(RLS_1$Species)=="Xyricthys splendens"] <- "Xyrichtys splendens"
-levels(RLS_1$Species)[levels(RLS_1$Species)=="Ctenogonius stigmaturus"] <- "Ctenogobius stigmaturus"
-levels(RLS_1$Species)[levels(RLS_1$Species)=="Ophistignathus sp."] <- "Opistognathus sp."
-levels(RLS_1$Species)[levels(RLS_1$Species)=="Ctenogonius stigmaturus"] <- "Ctenogobius stigmaturus"
-levels(RLS_1$Species)[levels(RLS_1$Species)=="Hyppolytidae"] <- "Hippolytidae"
-levels(RLS_1$Species)[levels(RLS_1$Species)=="Paradiplogrammus bairdi"] <- "Callionymus bairdi"
-levels(RLS_1$Species)[levels(RLS_1$Species)=="Cryptotoums roseus"] <- "Cryptotomus roseus"
-levels(RLS_1$Species)[levels(RLS_1$Species)=="Eucinostoums gula"] <- "Eucinostomus gula"
-levels(RLS_1$Species)[levels(RLS_1$Species)=="Atherinidae"] <- "Atherinid spp."
-levels(RLS_1$Species)[levels(RLS_1$Species)=="Clupeoid spp."] <- "Clupeidae"
-levels(RLS_1$Species)[levels(RLS_1$Species)=="Antherinidae sp."] <- "Atherinid spp."
-
-
-# remove unknown and freshwater species
-RLS_1 <- RLS_1 %>%
-  filter(Species != c("Gambusia sp.")) %>%
-  filter(Species != c("Scarine spp."))
-
-# remove incidental inverts
-RLS_1 <- RLS_1 %>%
-  filter(Species != "Hippolytidae") %>%
-  filter(Species != "Mithracid spp.")%>%
-  filter(Species != "Strombus gigas") %>%
-  filter(Species != "Sepioteuthis sepioidea")
-
-# replace NAs with 0 
-RLS_1[is.na(RLS_1)] <- 0
-
-############### BIOMASS COEFFICIENTS
-
-# Load coefficients
-coef <- read.csv("20180116_RLS_biomass_coefs.csv")
-
-# rename species column to match RLS column
-names(coef)[names(coef)=="SPECIES_NAME"] <- "Species"
-
-# remove unused columns
-coef_small <- coef %>%
-  select(Species, A, B, CF)
-
-# match characters to RLS data
-RLS_biom <- full_join(RLS_1, coef_small, by="Species")
-
-# identify species not in character list all M1M2
-unique(RLS_biom$Species[!(RLS_biom$Species %in% coef$Species)])
-
-write.csv(RLS_biom, "CBC_RLS_fish-biomass_full.csv")
-
-### CALCULATIONS FOR BIOMASS MADE IN EXCEL AND RELOADED INTO R as 
-### "20180124_CBC_biom.csv"
-
-################ SKIP TO HERE ###################
-
-
-
-
-
-
+# Import Biomass data
 biomass <- read.csv("20180124_CBC_biom.csv")
 
 
@@ -175,8 +90,8 @@ levels(characters$Trophic.group)[levels(characters$Trophic.group)=="omnivore"] <
 levels(characters$Trophic.group)[levels(characters$Trophic.group)=="suspension feeders"] <- "Suspension feeders"
 levels(characters$Trophic.group)
 
-# import bins for fish sizes (from German Soler)
-Lbins <- read.csv("lengthbins_soler.csv")
+# import bins for fish sizes (from German Soler), need to decide if these are useful
+# Lbins <- read.csv("lengthbins_soler.csv")
 
 ############### SQUIDPOPS
 
@@ -222,6 +137,7 @@ short_benthic <- benthic %>%
 # Order factor Site.Name by reef type and from North to South
 short_benthic$Site.Name <- factor(short_benthic$Site.Name, levels = c("Tobacco Reef", "Carrie Bow Reef", "South Reef", "Carrie Bow Patch Reef", "House Reef", "Curlew Patch Reef"))
 
+detach(package:plyr)
 # add up occurences 
 short_benthic$amount <- rep(1)
 short_benthic <- short_benthic %>%
@@ -436,7 +352,7 @@ RLS_Lmax$Lbin <- as.factor(RLS_Lmax$Lbin)
 ############NEED TO FIX THIS SECTION
 # sum functional groups for each site
 Lmax_anal <- RLS_Lmax %>%
-  group_by(Site.Name, Habitat.x, Lbin) %>%
+  group_by(Site.Name, Habitat.x, MaxLength) %>%
   summarise(sum(sum))
 
 # change column name
@@ -444,7 +360,7 @@ names(Lmax_anal)[names(Lmax_anal)=="sum(sum)"] <- "total"
 
 # spread RLS data into community matrix
 Lmax_full_mat <- Lmax_anal %>%
-  spread(Lbin, total, fill = 0)
+  spread(MaxLength, total, fill = 0)
 Lmax_mat <- Lmax_full_mat[,c(3:5)]
 
 # run matrix 
@@ -805,7 +721,7 @@ tax_MDS <- ggplot(plot_data_tax, aes(x=MDS1, y=MDS2, pch = Year,
   #geom_text(data=vec_sp_tax_df,aes(x=MDS1,y=MDS2,label=species),size=5) +
   #coord_fixed() +
   rremove("legend") 
-tax_MDS
+#tax_MDS
 
 # 2D Trophic nMDS
 tro_MDS <- ggplot(plot_data_tro, aes(x=MDS1, y=MDS2, pch = Year, 
@@ -814,7 +730,7 @@ tro_MDS <- ggplot(plot_data_tro, aes(x=MDS1, y=MDS2, pch = Year,
   geom_point(size = 4) + 
   geom_polygon(data=chulls_tro, aes(x=MDS1, y=MDS2, group=Habitat), fill=NA) +
   habScale
-tro_MDS
+#tro_MDS
 
 Figure2 <- ggarrange(fam_plot, troph_plot, tax_MDS, tro_MDS, 
                      labels = c("A", "B", "C", "D"),

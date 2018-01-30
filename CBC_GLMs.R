@@ -9,7 +9,7 @@
 ###################################################################################
 
 # SUMMARY:
-# This collection of GLMs explores the relationships between feeding pressure 
+# This collection of GLMs explores the relationships between feeding pressure
 # (squidpops and weedpops) and fish community metrics at Carrie Bow Cay, Belize
 # between 2015 and 2017.
 
@@ -22,7 +22,7 @@
 
 # Associated Scripts:
 # CBC_Manuscript_Figures.R
-# RLS_M1M2_v1.R 
+# RLS_M1M2_v1.R
 
 # TO DO
 
@@ -81,7 +81,14 @@ glimpse(RLS_subsample)
 
 RLS_biom <- read.csv("20180124_CBC_biom.csv")
 
-
+# Import large fish dataset
+RLS_large <- read.csv("20180124_CBC_largefish.csv")
+RLS_large_summ <- RLS_large %>%
+  group_by(Site.Name, Year) %>%
+  summarise(sum(Total.Abundance))
+names(RLS_large_summ)[names(RLS_large_summ) == "sum(Total.Abundance)"] <- "Large.Abun"
+# create log abundance column
+RLS_large_summ$Large.Log <- log10((RLS_large_summ$Large.Abun) + 1)
 
 ############### SQUIDPOPS
 
@@ -97,7 +104,7 @@ squidpops$Proportion.Missing.1.hour <- as.numeric(as.character(squidpops$Proport
 # change year to factor
 squidpops$Year <- as.factor(squidpops$Year)
 
-####### CODE ADAPTED FROM BRIAN CHENG TO EXPAND SQUIDPOP DETACHMENT TO 
+####### CODE ADAPTED FROM BRIAN CHENG TO EXPAND SQUIDPOP DETACHMENT TO
 ####### 0S AND 1S BINOMIAL.
 
 # create column of retained squid
@@ -105,28 +112,26 @@ squidpops$Not.Detached <- squidpops$Number.Deployed - squidpops$Detachment.1.hou
 
 # remove rows with NA
 
-squidpops <- squidpops[!(is.na(squidpops$Detachment.1.hour)),]
+squidpops <- squidpops[!(is.na(squidpops$Detachment.1.hour)), ]
 
-dataset<-squidpops #first clone your dataframe and call it 'dataset' so you don't have to rename stuff
-#my columns were originally called "Alive" and "Dead", change these column names so you they are standardized at "success" (not detached) and "failure" (detached)
-names(dataset)[names(dataset)=="Not.Detached"]<-c("success") #rename the dataframe columns
-names(dataset)[names(dataset)=="Detachment.1.hour"]<-c("failure")
-dataset.expanded = dataset[0,]
+dataset <- squidpops # first clone your dataframe and call it 'dataset' so you don't have to rename stuff
+# my columns were originally called "Alive" and "Dead", change these column names so you they are standardized at "success" (not detached) and "failure" (detached)
+names(dataset)[names(dataset) == "Not.Detached"] <- c("success") # rename the dataframe columns
+names(dataset)[names(dataset) == "Detachment.1.hour"] <- c("failure")
+dataset.expanded <- dataset[0, ]
 for (i in 1:length(dataset$success))
 {
-  if(dataset$success[i]>0)
-  {
-    dataset.add.succ = dataset[rep(i,dataset$success[i]),]
-    dataset.add.succ$success=1
-    dataset.add.succ$failure=0
-    dataset.expanded=rbind(dataset.expanded, dataset.add.succ)
+  if (dataset$success[i] > 0) {
+    dataset.add.succ <- dataset[rep(i, dataset$success[i]), ]
+    dataset.add.succ$success <- 1
+    dataset.add.succ$failure <- 0
+    dataset.expanded <- rbind(dataset.expanded, dataset.add.succ)
   }
-  if(dataset$failure[i]>0)
-  {
-    dataset.add.fail = dataset[rep(i,dataset$failure[i]),]
-    dataset.add.fail$success=0
-    dataset.add.fail$failure=1
-    dataset.expanded=rbind(dataset.expanded, dataset.add.fail)
+  if (dataset$failure[i] > 0) {
+    dataset.add.fail <- dataset[rep(i, dataset$failure[i]), ]
+    dataset.add.fail$success <- 0
+    dataset.add.fail$failure <- 1
+    dataset.expanded <- rbind(dataset.expanded, dataset.add.fail)
   }
 }
 
@@ -146,6 +151,40 @@ weedpops$habitat <- factor(weedpops$habitat, levels = c("fore reef", "patch reef
 # change year to factor
 weedpops$year <- as.factor(weedpops$year)
 
+####### CODE ADAPTED FROM BRIAN CHENG TO EXPAND WEEDPOP DETACHMENT TO
+####### 0S AND 1S BINOMIAL.
+
+# create column of retained squid
+weedpops$Not.Detached <- weedpops$number.recovered - weedpops$detachment.24hr
+
+# remove rows with NA
+
+weedpops <- weedpops[!(is.na(weedpops$detachment.24hr)), ]
+
+dataset <- weedpops # first clone your dataframe and call it 'dataset' so you don't have to rename stuff
+# my columns were originally called "Alive" and "Dead", change these column names so you they are standardized at "success" (not detached) and "failure" (detached)
+names(dataset)[names(dataset) == "Not.Detached"] <- c("success") # rename the dataframe columns
+names(dataset)[names(dataset) == "detachment.24hr"] <- c("failure")
+dataset.expanded <- dataset[0, ]
+for (i in 1:length(dataset$success))
+{
+  if (dataset$success[i] > 0) {
+    dataset.add.succ <- dataset[rep(i, dataset$success[i]), ]
+    dataset.add.succ$success <- 1
+    dataset.add.succ$failure <- 0
+    dataset.expanded <- rbind(dataset.expanded, dataset.add.succ)
+  }
+  if (dataset$failure[i] > 0) {
+    dataset.add.fail <- dataset[rep(i, dataset$failure[i]), ]
+    dataset.add.fail$success <- 0
+    dataset.add.fail$failure <- 1
+    dataset.expanded <- rbind(dataset.expanded, dataset.add.fail)
+  }
+}
+
+# Duplicate to clarify name
+weedpops.expanded <- dataset.expanded
+
 
 ############### JOIN ASSAY DATA WITH COMMUNITY DATA
 
@@ -153,52 +192,55 @@ weedpops$year <- as.factor(weedpops$year)
 biom_summary <- RLS_biom %>%
   group_by(Site.Name, Year, Habitat) %>%
   summarise(sum(Total.Biomass))
-  # change column name
-  names(biom_summary)[names(biom_summary)=="sum(Total.Biomass)"] <- "Total.Biomass"
-  # log 10 the biomass
-  biom_summary$Log.Biomass <- log10(biom_summary$Total.Biomass)
-  # create site/time column to join with other data
-  biom_summary <- biom_summary %>%
-    unite(Site.Time, Site.Name, Year, sep="_", remove = FALSE)
-  
+# change column name
+names(biom_summary)[names(biom_summary) == "sum(Total.Biomass)"] <- "Total.Biomass"
+# log 10 the biomass
+biom_summary$Log.Biomass <- log10(biom_summary$Total.Biomass)
+# create site/time column to join with other data
+biom_summary <- biom_summary %>%
+  unite(Site.Time, Site.Name, Year, sep = "_", remove = FALSE)
+
+# create site/time for large fish abundance
+RLS_large_summ <- RLS_large_summ %>%
+  select(Site.Name, Year, Large.Log) %>%
+  unite(Site.Time, Site.Name, Year, sep = "_", remove = TRUE)
+
 # create site/time column for squidpop data joining
-  squidpop_summ <- squidpops.expanded %>%
-    select(Site, Year, failure) %>%
-    unite(Site.Time, Site, Year, sep ="_", remove = TRUE) 
-  
+squidpop_summ <- squidpops.expanded %>%
+  select(Site, Year, failure) %>%
+  unite(Site.Time, Site, Year, sep = "_", remove = TRUE)
+# change name of failure to Squidpop.Detached (0=no 1=yes)
+names(squidpop_summ)[names(squidpop_summ) == "failure"] <- "Squidpop.Detached"
+
 # create site/time column for weedpop data joining and summarise
-  weed_summ <- weedpops %>%
-    group_by(site, year) %>%
-    summarise(sum(number.recovered), sum(detachment.24hr)) 
-  # change column name
-  names(weed_summ)[names(weed_summ)=="sum(number.recovered)"] <- "Weed.Recovered"
-  names(weed_summ)[names(weed_summ)=="sum(detachment.24hr)"] <- "Weed.Detached"
-  # create site/time column to join with other data
-  weed_summ <- weed_summ %>%
-    unite(Site.Time, site, year, sep="_", remove = TRUE) %>%
-    select(Site.Time, Weed.Recovered, Weed.Detached)
-  
+weed_summ <- weedpops.expanded %>%
+  select(site, year, failure) %>%
+  unite(Site.Time, site, year, sep = "_", remove = TRUE)
+names(weed_summ)[names(weed_summ) == "failure"] <- "Weedpop.Detached"
+
 # create site/time column for RLS diversity data
-  RLS_summ <- RLS_subsample
-  RLS_summ$count <- 1
-  RLS_summ <- RLS_summ %>%
-    unite(Site.Time, Site.Name, Year, sep= "_", remove = TRUE) %>%
-    group_by(Site.Time) %>%
-    summarise(sum(count), sum(sum))
-  #change column name
-  names(RLS_summ)[names(RLS_summ)=="sum(count)"] <- "Raw.Richness"
-  names(RLS_summ)[names(RLS_summ)=="sum(sum)"] <- "Fish.Abundance"
-  RLS_summ$Log.Abundance <- log10(RLS_summ$Fish.Abundance)
-  
-GLM_data <- left_join(biom_summary, squidpop_summ, by = "Site.Time")  
+RLS_summ <- RLS_subsample
+RLS_summ$count <- 1
+RLS_summ <- RLS_summ %>%
+  unite(Site.Time, Site.Name, Year, sep = "_", remove = TRUE) %>%
+  group_by(Site.Time) %>%
+  summarise(sum(count), sum(sum))
+# change column name
+names(RLS_summ)[names(RLS_summ) == "sum(count)"] <- "Raw.Richness"
+names(RLS_summ)[names(RLS_summ) == "sum(sum)"] <- "Fish.Abundance"
+RLS_summ$Log.Abundance <- log10(RLS_summ$Fish.Abundance)
+
+GLM_data <- left_join(biom_summary, squidpop_summ, by = "Site.Time")
 GLM_data <- left_join(GLM_data, RLS_summ, by = "Site.Time")
+GLM_data <- left_join(GLM_data, RLS_large_summ, by = "Site.Time")
+
+# need to separate weedpop data, if is response = binary, if factor = sum
 GLM_data <- left_join(GLM_data, weed_summ, by = "Site.Time")
 
 # make year a factor
 GLM_data$Year <- as.factor(GLM_data$Year)
 
-# change name of failure to Squidpop.Detached (0=no 1=yes)
-names(GLM_data)[names(GLM_data)=="failure"] <- "Squidpop.Detached"
+
 
 
 ###################################################################################
@@ -212,32 +254,32 @@ names(GLM_data)[names(GLM_data)=="failure"] <- "Squidpop.Detached"
 plot(Squidpop.Detached ~ Raw.Richness, data = GLM_data)
 plot(Squidpop.Detached ~ Log.Abundance, data = GLM_data)
 plot(Squidpop.Detached ~ Log.Biomass, data = GLM_data)
- 
+
 # weedpops NEED TO UPDATE TO BINOMIAL
-plot(Weed.Detached/Weed.Recovered ~ Raw.Richness, data = GLM_data)
-plot(Weed.Detached/Weed.Recovered ~ Log.Abundance, data = GLM_data)
-plot(Weed.Detached/Weed.Recovered ~ Log.Biomass, data = GLM_data)
+plot(Weed.Detached / Weed.Recovered ~ Raw.Richness, data = GLM_data)
+plot(Weed.Detached / Weed.Recovered ~ Log.Abundance, data = GLM_data)
+plot(Weed.Detached / Weed.Recovered ~ Log.Biomass, data = GLM_data)
 
 
 ############### vif.mer function
 
 # find colinearity among variables
 
-vif.mer <- function (fit) {
+vif.mer <- function(fit) {
   ## adapted from rms::vif
-  
+
   v <- vcov(fit)
   nam <- names(fixef(fit))
-  
+
   ## exclude intercepts
   ns <- sum(1 * (nam == "Intercept" | nam == "(Intercept)"))
   if (ns > 0) {
     v <- v[-(1:ns), -(1:ns), drop = FALSE]
     nam <- nam[-(1:ns)]
   }
-  
-  d <- diag(v)^0.5
-  v <- diag(solve(v/(d %o% d)))
+
+  d <- diag(v) ^ 0.5
+  v <- diag(solve(v / (d %o% d)))
   names(v) <- nam
   v
 }
@@ -247,33 +289,32 @@ vif.mer <- function (fit) {
 
 ############### GLM
 
-# Notes with Jon. 
+# Notes with Jon.
 
-# cbind for column successs/colum failure. Should parse out to 0 and 1. Expand grid? Brian Cheng has code? 
+# cbind for column successs/colum failure. Should parse out to 0 and 1. Expand grid? Brian Cheng has code?
 
-# Abundance and biomass are highly correlated. Model can't distribute because of this phenomena. Creates huge standard error, can't tell diff between these things. 
+# Abundance and biomass are highly correlated. Model can't distribute because of this phenomena. Creates huge standard error, can't tell diff between these things.
 
-# Jon's worked focused on abundance but did bite rate per biomass? 
+# Jon's worked focused on abundance but did bite rate per biomass?
 
-# car package has vif function, computes degree of colinearity between variables. Allows you to choose one varible or the other if they are correlate. 
+# car package has vif function, computes degree of colinearity between variables. Allows you to choose one varible or the other if they are correlate.
 
-# richness might be correlated too. 
+# richness might be correlated too.
 
-# (1|Site.Name/Year) use this syntax, acknowleges resampled sites through time. If you get large SD associated with site, model accounted for lots of varition within site. If number is small, very little variation, may want to remove? Or could do psuedo-r square. piecewiseSEM function rsquares -> marginal r squared, output similar to lm and other measure that accounts for random factors. conditional r tell how much is accounted for my random effects. 
+# (1|Site.Name/Year) use this syntax, acknowleges resampled sites through time. If you get large SD associated with site, model accounted for lots of varition within site. If number is small, very little variation, may want to remove? Or could do psuedo-r square. piecewiseSEM function rsquares -> marginal r squared, output similar to lm and other measure that accounts for random factors. conditional r tell how much is accounted for my random effects.
 
-# colinearity is major issue, start of model selection. Model selection can be self defeating, can't talk about the things that are interesting and mechanistic. Not a fishing expedition. 
+# colinearity is major issue, start of model selection. Model selection can be self defeating, can't talk about the things that are interesting and mechanistic. Not a fishing expedition.
 
-# normality test. residuals have to be normal, not predictors. Settle on model first, then check normality. Use Dharma package to check normality. Center and divide by SD of variables to scale. 
+# normality test. residuals have to be normal, not predictors. Settle on model first, then check normality. Use Dharma package to check normality. Center and divide by SD of variables to scale.
 
-# You know what's going on out there, you know the system. See if the model makes sense. Intuition should trump everything. 
+# You know what's going on out there, you know the system. See if the model makes sense. Intuition should trump everything.
 
-# expand.grid <- create 0 and 1 from proportions? 
+# expand.grid <- create 0 and 1 from proportions?
 
 
-# squidpops glm, binomial model tested against fish metrics and habitat type, with 
-# year and site as random variables. 
-SP_GLM <- glmer(formula = Squidpop.Detached ~ Raw.Richness + Log.Biomass + Log.Abundance  + Habitat + (1|Site.Name/Year), family = binomial(logit), data = GLM_data)
-
+# squidpops glm, binomial model tested against fish metrics and habitat type, with
+# year and site as random variables.
+SP_GLM <- glmer(formula = Squidpop.Detached ~ Raw.Richness + Log.Biomass + Log.Abundance + Large.Log + Habitat + (1 | Site.Name / Year), family = binomial(logit), data = GLM_data)
 summary(SP_GLM)
 
 # obtaining pseudo-r values for the model
@@ -282,17 +323,20 @@ rsquared(SP_GLM)
 # run DHARMa simulation for residuals (testing normality)
 simulationOutput <- simulateResiduals(fittedModel = SP_GLM, n = 250)
 
-  #visualize the output
-  
-  plotSimulatedResiduals(simulationOutput = simulationOutput)
+# visualize the output
+
+plotSimulatedResiduals(simulationOutput = simulationOutput)
 
 # run colinearity analysis for factors in analaysis (vif.mer function above)
 vif.mer(SP_GLM)
-  
+
 # plot factors against each other to look for relationships
 plot(Log.Biomass ~ Log.Abundance, data = GLM_data)
 plot(Log.Biomass ~ Raw.Richness, data = GLM_data)
 plot(Log.Abundance ~ Raw.Richness, data = GLM_data)
+plot(Large.Log ~ Log.Abundance, data = GLM_data)
+plot(Large.Log ~ Log.Biomass, data = GLM_data)
+plot(Large.Log ~ Raw.Richness, data = GLM_data)
 
 # lm of correlations
 mod_bio_abund <- lm(Log.Biomass ~ Log.Abundance, data = GLM_data)
@@ -303,17 +347,26 @@ mod_abund_rich <- lm(Log.Abundance ~ Raw.Richness, data = GLM_data)
 summary(mod_abund_rich)
 
 # weedpops
-WP_GLM <- glmer(formula = cbind(Weed.Detached, Weed.Recovered - Weed.Detached) ~ Raw.Richness + Log.Abundance + Log.Biomass + Habitat + (1|Year), family = binomial(logit), data = GLM_data)
+WP_GLM <- glmer(formula = cbind(Weed.Detached, Weed.Recovered - Weed.Detached) ~ Raw.Richness + Log.Abundance + Log.Biomass + Habitat + (1 | Year), family = binomial(logit), data = GLM_data)
 
 summary(WP_GLM)
 
+
+
 # change through time
 
-BIOM_GLM <- lmer(formula = Log.Biomass ~ Habitat * Year + (1|Site.Name), data = GLM_data)
+BIOM_GLM <- lmer(formula = Log.Biomass ~ Habitat * Year + (1 | Site.Name), data = GLM_data)
 sjt.lmer(BIOM_GLM)
 
- ABUN_GLM <- lmer(formula = Log.Abundance ~ Habitat * Year + (1|Site.Name), data = GLM_data)
+ABUN_GLM <- lmer(formula = Log.Abundance ~ Habitat * Year + (1 | Site.Name), data = GLM_data)
 sjt.lmer(ABUN_GLM)
 
 #####
-#<<<<<<<<<<<<<<<<<<<<<<<<<<END OF SCRIPT>>>>>>>>>>>>>>>>>>>>>>>>#
+# <<<<<<<<<<<<<<<<<<<<<<<<<<END OF SCRIPT>>>>>>>>>>>>>>>>>>>>>>>>#
+
+
+
+####### SCRATCH PAD
+
+ggplot(RLS_large, aes(x = Habitat, y = Total.Abundance)) +
+  geom_col()
