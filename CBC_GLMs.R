@@ -60,6 +60,31 @@ library(piecewiseSEM) # computing pseudo-r for glms
 library(DHARMa) # for residual diagnostics of glms (normality of residuals)
 library(car) # test colinearity in GLM
 
+############### vif.mer function
+
+# find colinearity among variables
+
+vif.mer <- function(fit) {
+  ## adapted from rms::vif
+  
+  v <- vcov(fit)
+  nam <- names(fixef(fit))
+  
+  ## exclude intercepts
+  ns <- sum(1 * (nam == "Intercept" | nam == "(Intercept)"))
+  if (ns > 0) {
+    v <- v[-(1:ns), -(1:ns), drop = FALSE]
+    nam <- nam[-(1:ns)]
+  }
+  
+  d <- diag(v) ^ 0.5
+  v <- diag(solve(v / (d %o% d)))
+  names(v) <- nam
+  v
+}
+
+
+
 ###################################################################################
 # READ IN AND PREPARE DATA                                                        #
 ###################################################################################
@@ -246,6 +271,8 @@ GLM_data_WP <- left_join(GLM_data_WP, RLS_large_summ, by = "Site.Time")
 # make year a factor
 GLM_data_WP$Year <- as.factor(GLM_data_WP$Year) 
 
+#write.csv(GLM_data_SP, "GLM_data_SP.csv")
+
 
 
 
@@ -267,29 +294,6 @@ plot(Weed.Detached / Weed.Recovered ~ Raw.Richness, data = GLM_data)
 plot(Weed.Detached / Weed.Recovered ~ Log.Abundance, data = GLM_data)
 plot(Weed.Detached / Weed.Recovered ~ Log.Biomass, data = GLM_data)
 
-
-############### vif.mer function
-
-# find colinearity among variables
-
-vif.mer <- function(fit) {
-  ## adapted from rms::vif
-
-  v <- vcov(fit)
-  nam <- names(fixef(fit))
-
-  ## exclude intercepts
-  ns <- sum(1 * (nam == "Intercept" | nam == "(Intercept)"))
-  if (ns > 0) {
-    v <- v[-(1:ns), -(1:ns), drop = FALSE]
-    nam <- nam[-(1:ns)]
-  }
-
-  d <- diag(v) ^ 0.5
-  v <- diag(solve(v / (d %o% d)))
-  names(v) <- nam
-  v
-}
 
 
 
@@ -320,7 +324,7 @@ vif.mer <- function(fit) {
 
 
 
-
+################ HABITAT AS A PREDICTOR
 
 # squidpops glm, binomial model tested against fish metrics and habitat type, with
 # year and site as random variables.
@@ -359,8 +363,6 @@ summary(mod_abund_rich)
 
 
 
-
-
 # weedpops glm, binomial model tested against fish metrics and habitat type, with
 # year and site as random variables.
 WP_GLM <- glmer(formula = Weedpop.Detached ~ Raw.Richness + Log.Biomass + Log.Abundance + Large.Log + Habitat + (1 | Site.Name / Year), family = binomial(logit), data = GLM_data_WP)
@@ -382,20 +384,32 @@ vif.mer(WP_GLM)
 
 
 
-# change through time
-
-BIOM_GLM <- lmer(formula = Log.Biomass ~ Habitat * Year + (1 | Site.Name), data = GLM_data)
-sjt.lmer(BIOM_GLM)
-
-ABUN_GLM <- lmer(formula = Log.Abundance ~ Habitat * Year + (1 | Site.Name), data = GLM_data)
-sjt.lmer(ABUN_GLM)
-
-#####
-# <<<<<<<<<<<<<<<<<<<<<<<<<<END OF SCRIPT>>>>>>>>>>>>>>>>>>>>>>>>#
+################ HABITAT AS A RANDOM VARIABLE
 
 
+SP_GLM_habrand <- glmer(formula = Squidpop.Detached ~ Raw.Richness + Log.Biomass + Large.Log + (1 | Site.Name / Habitat / Year), family = binomial(logit), data = GLM_data_SP)
+sjt.glmer(SP_GLM_habrand)
+summary(SP_GLM_habrand)
 
-####### SCRATCH PAD
+# obtaining pseudo-r values for the model
+rsquared(SP_GLM_habrand)
+
+# run DHARMa simulation for residuals (testing normality)
+simulationOutput <- simulateResiduals(fittedModel = SP_GLM_habrand, n = 250)
+
+# visualize the output
+
+plotSimulatedResiduals(simulationOutput = simulationOutput)
+
+# run colinearity analysis for factors in analaysis (vif.mer function above)
+vif.mer(SP_GLM_habrand)
+
+
+
+
+
+
+# VISUALIZATION CURVE
 
 SP_GLM_habrand_curve <- glm(formula = Squidpop.Detached ~ Raw.Richness, family = binomial(logit), data = GLM_data_SP)
 
@@ -417,9 +431,67 @@ plotSimulatedResiduals(simulationOutput = simulationOutput)
 vif.mer(SP_GLM_habrand)
 
 
-SP_GLM_habrand <- glmer(formula = Squidpop.Detached ~ Raw.Richness + Log.Biomass + Log.Abundance + Large.Log + (1 | Site.Name/Habitat / Year), family = binomial(logit), data = GLM_data_SP)
-sjt.glmer(SP_GLM_habrand)
-summary(SP_GLM)
+
+
+
+
+
+
+
+
+# change through time
+
+BIOM_GLM <- lmer(formula = Log.Biomass ~ Habitat * Year + (1 | Site.Name), data = GLM_data)
+sjt.lmer(BIOM_GLM)
+
+ABUN_GLM <- lmer(formula = Log.Abundance ~ Habitat * Year + (1 | Site.Name), data = GLM_data)
+sjt.lmer(ABUN_GLM)
+
+
+
+################### SEM
+# from Jon Lefcheck
+
+### SEM for MarineGEO
+
+# Load required libraries
+library(lme4)
+library(nlme)
+devtools::install_github("jslefche/piecewiseSEM@2.0")
+library(piecewiseSEM) # welcome message indicating version
+
+# Load data
+data <- read.csv("GLM_data_SP.csv")
+
+data$Log.Richness <- log10(data$Raw.Richness)
+
+# Create models going into SEM
+model <- psem(
+  
+  diversity = lme(Log.Richness ~ Habitat ,random = ~ 1 | Year, data),
+  
+  biomass = lme(Total.Biomass ~ Habitat, random = ~ 1 | Year,  data),
+  
+  predation = glmer(Squidpop.Detached ~ Habitat + Total.Biomass + Log.Richness + (1 | Site.Name / Year), family = binomial, data), # logit link is the default
+  
+  Log.Richness %~~% Total.Biomass, # correlated error
+  
+  data = data
+)
+
+summary(model)
+
+
+
+
+#####
+# <<<<<<<<<<<<<<<<<<<<<<<<<<END OF SCRIPT>>>>>>>>>>>>>>>>>>>>>>>>#
+
+
+
+####### SCRATCH PAD
+
+
 
 
 
