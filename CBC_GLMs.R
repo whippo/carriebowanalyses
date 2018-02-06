@@ -32,13 +32,19 @@
 # RECENT CHANGES TO SCRIPT                                                        #
 # LOAD PACKAGES                                                                   #
 # READ IN AND PREPARE DATA                                                        #
-# SUMMARY STATS                                                                   # #                                                                                 #
+# SUMMARY STATS                                                                   #
+# LINEAR MODEL PLOTS                                                              #
+# GLM                                                                             #
+# BINOMIAL PLOT                                                                   #
+# SEM                                                                             #
+# 
 ###################################################################################
 
 ###################################################################################
 # RECENT CHANGES TO SCRIPT                                                        #
 ###################################################################################
 
+# 2018-02-06 SEM, GLM, and various plot labeled/added
 # 2018-01-23  Script Created
 
 ###################################################################################
@@ -53,9 +59,10 @@ library(splitstackshape) # data manipulation
 library(viridis) # color palette
 library(psych) # pairs analysis
 library(lme4) # glm analyses
+library(nlme) # SEM analysis
+library(piecewiseSEM) # SEM
 library(grid) # nMDS vectors
 library(sjPlot) # quick summaries of models
-library(devtools)
 library(piecewiseSEM) # computing pseudo-r for glms
 library(DHARMa) # for residual diagnostics of glms (normality of residuals)
 library(car) # test colinearity in GLM
@@ -278,7 +285,7 @@ GLM_data_WP$Year <- as.factor(GLM_data_WP$Year)
 
 
 ###################################################################################
-# SUMMARY STATS                                                                   #
+# LINEAR MODEL PLOTS                                                              #
 ###################################################################################
 
 ############### SIMPLE PLOTS OF RELATIONSHIPS
@@ -298,7 +305,9 @@ plot(Weed.Detached / Weed.Recovered ~ Log.Biomass, data = GLM_data)
 
 
 
-############### GLM
+###################################################################################
+# GLM                                                                             #
+###################################################################################
 
 # Notes with Jon.
 
@@ -345,21 +354,6 @@ plotSimulatedResiduals(simulationOutput = simulationOutput)
 # run colinearity analysis for factors in analaysis (vif.mer function above)
 vif.mer(SP_GLM)
 
-# plot factors against each other to look for relationships
-plot(Log.Biomass ~ Log.Abundance, data = GLM_data)
-plot(Log.Biomass ~ Raw.Richness, data = GLM_data)
-plot(Log.Abundance ~ Raw.Richness, data = GLM_data)
-plot(Large.Log ~ Log.Abundance, data = GLM_data)
-plot(Large.Log ~ Log.Biomass, data = GLM_data)
-plot(Large.Log ~ Raw.Richness, data = GLM_data)
-
-# lm of correlations
-mod_bio_abund <- lm(Log.Biomass ~ Log.Abundance, data = GLM_data)
-summary(mod_bio_abund)
-mod_bio_rich <- lm(Log.Biomass ~ Raw.Richness, data = GLM_data)
-summary(mod_bio_rich)
-mod_abund_rich <- lm(Log.Abundance ~ Raw.Richness, data = GLM_data)
-summary(mod_abund_rich)
 
 
 
@@ -406,7 +400,9 @@ vif.mer(SP_GLM_habrand)
 
 
 
-
+###################################################################################
+# BINOMIAL PLOT                                                                   #
+###################################################################################
 
 
 # VISUALIZATION CURVE
@@ -449,16 +445,18 @@ sjt.lmer(ABUN_GLM)
 
 
 
-################### SEM
+###################################################################################
+# SEM                                                                             #
+###################################################################################
 # from Jon Lefcheck
 
 ### SEM for MarineGEO
 
 # Load required libraries
-library(lme4)
-library(nlme)
-devtools::install_github("jslefche/piecewiseSEM@2.0")
-library(piecewiseSEM) # welcome message indicating version
+#library(lme4)
+#library(nlme)
+#devtools::install_github("jslefche/piecewiseSEM@2.0")
+#library(piecewiseSEM) # welcome message indicating version
 
 # Load data
 data <- read.csv("GLM_data_SP.csv")
