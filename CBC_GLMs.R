@@ -25,6 +25,11 @@
 # RLS_M1M2_v1.R
 
 # TO DO
+# Figure out order of nested terms in SEM. Run reef-only data in SEM. Make SEM box
+# with arrows and thickness. Ask Jon how he'd present it. 
+# Interested in hard substrate, here' the code (to Jon), does it work?
+# glmer(Squidpop.Detached ~ scale(Total.Biomass) + scale(Log.Richness) + (1 | Habitat / Site.Name / Year), family = binomial, reef_data)
+# how do we get p-values, only scaled biomass and rich cuz others are binary. 
 
 ###################################################################################
 # TABLE OF CONTENTS                                                               #
@@ -463,12 +468,21 @@ data <- read.csv("GLM_data_SP.csv")
 
 data$Log.Richness <- log10(data$Raw.Richness)
 
+
+
+
+
+detach(package:plyr)
+reef_data <- data %>%
+  filter(Habitat %in% target) 
+target <- c("Fore Reef", "Patch Reef")
+
 # Create models going into SEM
 model <- psem(
   
-  diversity = lme(Log.Richness ~ Habitat ,random = ~ 1 | Year, data),
+  diversity = lme(Log.Richness ~ Habitat ,random = ~ 1 | Year / Site.Name, data),
   
-  biomass = lme(Total.Biomass ~ Habitat, random = ~ 1 | Year,  data),
+  biomass = lme(Total.Biomass ~ Habitat, random = ~ 1 | Year / Site.Name,  data),
   
   predation = glmer(Squidpop.Detached ~ Habitat + Total.Biomass + Log.Richness + (1 | Site.Name / Year), family = binomial, data), # logit link is the default
   
@@ -490,7 +504,26 @@ summary(model)
 ####### SCRATCH PAD
 
 
+detach(package:plyr)
+reef_data <- data %>%
+  filter(Habitat %in% target) 
+target <- c("Fore Reef", "Patch Reef")
 
+# Create models going into SEM
+model <- psem(
+  
+  diversity = lme(Log.Richness ~ Habitat ,random = ~ 1 | Year / Site.Name, reef_data),
+  
+  biomass = lme(Total.Biomass ~ Habitat, random = ~ 1 | Year / Site.Name,  reef_data),
+  
+  predation = glmer(Squidpop.Detached ~ scale(Total.Biomass) + scale(Log.Richness) + (1 | Habitat / Site.Name / Year), family = binomial, reef_data), # logit link is the default
+  
+  Log.Richness %~~% Total.Biomass, # correlated error
+  
+  data = reef_data
+)
+
+summary(model)
 
 
 
